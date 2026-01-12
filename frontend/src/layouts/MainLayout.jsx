@@ -7,11 +7,17 @@ const MainLayout = ({ children }) => {
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <nav className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold text-primary">
-                Оюутны Портал
-              </Link>
-            </div>
+            <Link to="/" className="flex items-center space-x-2">
+              <img 
+                src="/logo-ufe.png" 
+                alt="Logo" 
+                className="object-contain w-10 h-10"
+              />
+              <span className="text-2xl font-bold text-primary">
+                БАКАЛАВРЫН СУРГАЛТЫН АЛБА
+              </span>
+            </Link>
+
             
             <div className="hidden space-x-8 md:flex">
               <Link to="/" className="text-gray-700 transition-colors hover:text-primary">
