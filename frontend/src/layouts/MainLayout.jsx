@@ -26,7 +26,7 @@ const MainLayout = ({ children }) => {
               <Link to="/announcements" className="text-gray-700 transition-colors hover:text-primary">
                 Зарууд
               </Link>
-              <Link to="/about" className="text-gray-700 transition-colors hover:text-primary">
+              <Link to="/staff" className="text-gray-700 transition-colors hover:text-primary">
                 Бидний тухай
               </Link>
             </div>
@@ -52,7 +52,7 @@ const MainLayout = ({ children }) => {
       <footer className="mt-auto text-white bg-gray-800">
         <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-gray-300">© 2025 Нинжинболд. Бүх эрх хуулиар хамгаалагдсан.</p>
+            <p className="text-gray-300">© 2026. Бүх эрх хуулиар хамгаалагдсан.</p>
           </div>
         </div>
       </footer>

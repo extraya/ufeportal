@@ -1,0 +1,30 @@
+:root {
+  --swiper-navigation-size: 20px;
+}
+
+/* Clean dots */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #cbd5e1;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb;
+}
+
+/* 🔥 Hide dots on mobile */
+@media (max-width: 640px) {
+  .swiper-pagination {
+    display: none;
+  }
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
