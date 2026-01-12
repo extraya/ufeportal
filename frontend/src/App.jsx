@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
 import ProgramsPage from './pages/ProgramsPage';
 import Announcements from './pages/Announcements';
-import Staff from './pages/staff';
+import Staff from './pages/Staff';
 
 function App() {
   return (
