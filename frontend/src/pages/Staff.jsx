@@ -32,7 +32,7 @@ export default function Staff() {
               <img
                 src={s.image_url}
                 alt={s.full_name}
-                className="object-cover mx-auto mb-4 rounded-full w-28 h-28"
+                className="object-cover mx-auto mb-4 w-30 h-30"
               />
             )}
             <h3 className="text-lg font-semibold">{s.full_name}</h3>
