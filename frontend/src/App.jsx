@@ -6,6 +6,7 @@ import ProgramsPage from './pages/ProgramsPage';
 import Announcements from './pages/Announcements';
 import Staff from './pages/Staff';
 import GpaCalculator from "./pages/GpaCalculator";
+import Creators from './pages/Creators';
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/staff" element={<Staff />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
+          <Route path="/creators" element={<Creators />} />
         </Routes>
       </MainLayout>
     </Router>
