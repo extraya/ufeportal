@@ -57,8 +57,21 @@ const MainLayout = ({ children }) => {
       {/* Footer */}
       <footer className="mt-auto text-white bg-gray-800">
         <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-300">© 2026. Бүх эрх хуулиар хамгаалагдсан.</p>
+          <div className="flex flex-col items-center space-y-3 text-center">
+            {/* Footer links */}
+            <div className="flex space-x-6 text-sm">
+              <Link
+                to="/gpa-calculator"
+                className="text-gray-300 transition hover:text-white"
+              >
+                GPA Calculator
+              </Link>
+            </div>
+
+            {/* Copyright */}
+            <p className="text-sm text-gray-400">
+              © 2026. Бүх эрх хуулиар хамгаалагдсан.
+            </p>
           </div>
         </div>
       </footer>
