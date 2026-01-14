@@ -23,17 +23,17 @@ const MainLayout = ({ children }) => {
               <Link to="/" className="text-gray-700 transition-colors hover:text-primary">
                 Нүүр Хуудас
               </Link>
-              <Link to="/news" className="text-gray-700 transition-colors hover:text-primary">
-                Мэдээ
-              </Link>
-              <Link to="/programs" className="text-gray-700 transition-colors hover:text-primary">
-                Хөтөлбөрүүд
-              </Link>
-              <Link to="/announcements" className="text-gray-700 transition-colors hover:text-primary">
-                Зарууд
-              </Link>
               <Link to="/staff" className="text-gray-700 transition-colors hover:text-primary">
-                Бидний тухай
+                Сургалтын Алба
+              </Link>
+              <Link to="/research" className="text-gray-700 transition-colors hover:text-primary">
+                Эрдэм Шинжилгээ
+              </Link>
+              <Link to="/services" className="text-gray-700 transition-colors hover:text-primary">
+                Оюутны үйлчилгээ
+              </Link>
+              <Link to="/volunteer" className="text-gray-700 transition-colors hover:text-primary">
+                Volunteer
               </Link>
             </div>
 

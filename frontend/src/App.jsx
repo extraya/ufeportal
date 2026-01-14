@@ -7,7 +7,9 @@ import Announcements from './pages/Announcements';
 import Staff from './pages/Staff';
 import GpaCalculator from "./pages/GpaCalculator";
 import Creators from './pages/Creators';
-
+import StudentServices from './pages/service/shome';  
+import Volunteer from './pages/volunteer/volunteer';
+import Research from './pages/research/Research';
 
 
 function App() {
@@ -22,6 +24,9 @@ function App() {
           <Route path="/staff" element={<Staff />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
           <Route path="/creators" element={<Creators />} />
+          <Route path="/services/*" element={<StudentServices />} />
+          <Route path="/volunteer/*" element={<Volunteer />} />
+          <Route path="/research/*" element={<Research />} />
         </Routes>
       </MainLayout>
     </Router>
