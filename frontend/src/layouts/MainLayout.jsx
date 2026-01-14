@@ -1,4 +1,12 @@
 import { Link } from 'react-router-dom';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
 
 const MainLayout = ({ children }) => {
   return (
@@ -55,23 +63,89 @@ const MainLayout = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto text-white bg-gray-800">
-        <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center space-y-3 text-center">
-            {/* Footer links */}
-            <div className="flex space-x-6 text-sm">
-              <Link
-                to="/gpa-calculator"
-                className="text-gray-300 transition hover:text-white"
-              >
-                GPA Calculator
-              </Link>
+      <footer className="mt-auto text-white bg-[#071b4a]">
+        <div className="px-6 py-12 mx-auto max-w-7xl">
+
+          {/* Main grid */}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+
+            {/* Logo + contact */}
+            <div className="space-y-4 text-sm text-gray-300">
+              <h2 className="text-2xl font-bold text-white">UFE</h2>
+
+              <p>
+                БЗД 3-р хороо, Энхтайвны өргөн чөлөө-5, 13381<br />
+                Ш/Х: Улаанбаатар-49
+              </p>
+
+              <p>
+                77771100, 77737777<br />
+                77774400, 77248888<br />
+                77350000
+              </p>
+
+              <p>info@ufe.edu.mn</p>
+            </div>
+
+            {/* Links 1 */}
+            <div>
+              <h3 className="mb-4 text-2xl font-bold">Чухал холбоос</h3>
+              <ul className="space-y-2 text-gray-300 text-l">
+                <li><Link to="#" className="hover:text-blue">Элсэлт</Link></li>
+                <li><Link to="https://infosys.ufe.edu.mn/" className="hover:text-blue">Infosys</Link></li>
+                <li><Link to="#" className="hover:text-blue">online.ufe.edu.mn</Link></li>
+                <li><Link to="#" className="hover:text-blue">Eoffice</Link></li>
+                <li><Link to="#" className="hover:text-blue">G-mail</Link></li>
+              </ul>
+            </div>
+
+            {/* Links 2 */}
+            <div className="pt-8 md:pt-0">
+              <ul className="space-y-2 text-gray-300 text-l">
+                <li><Link to="/gpa-calculator" className="hover:text-blue">Голч тооцоолуур</Link></li>
+                <li><Link to="#" className="hover:text-blue">Номын сангийн систем</Link></li>
+                <li><Link to="#" className="hover:text-blue">Бүтээлийн сан</Link></li>
+              </ul>
+            </div>
+
+            {/* Links 3 */}
+            <div className="pt-8 md:pt-0">
+              <ul className="space-y-2 text-gray-300 text-l">
+                <li><Link to="#" className="hover:text-blue">UFE 100 жил</Link></li>
+                <li><Link to="#" className="hover:text-blue">UFE network</Link></li>
+                <li><Link to="#" className="hover:text-blue">UFE store</Link></li>
+                <li><Link to="#" className="hover:text-blue">UFE Tech</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col items-center justify-between pt-8 mt-10 border-t border-blue-900 md:flex-row">
+
+            {/* Social icons */}
+            <div className="flex space-x-4">
+              <a href="https://www.facebook.com/ufe.edu.mn" className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+                <FaFacebookF />
+              </a>
+              <a href="https://www.instagram.com/ufe.edu.mn/" className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+                <FaInstagram />
+              </a>
+              <a href="https://twitter.com/ufe_edu_mn" className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+                <FaTwitter />
+              </a>
+              <a href="https://www.youtube.com/@ufemedia" className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+                <FaYoutube />
+              </a>
+              <a href="https://www.linkedin.com/school/ufemongolia/" className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+                <FaLinkedinIn />
+              </a>
             </div>
 
             {/* Copyright */}
-            <p className="text-sm text-gray-400">
-              © 2026. Бүх эрх хуулиар хамгаалагдсан.
+            <p className="mt-4 text-sm text-gray-400 md:mt-0">
+              © 2026 UFE. All rights reserved.
             </p>
+            
           </div>
         </div>
       </footer>
