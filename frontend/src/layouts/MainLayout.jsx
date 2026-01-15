@@ -93,9 +93,8 @@ const MainLayout = ({ children }) => {
               <ul className="space-y-2 text-gray-300 text-l">
                 <li><Link to="#" className="hover:text-blue">Элсэлт</Link></li>
                 <li><Link to="https://infosys.ufe.edu.mn/" className="hover:text-blue">Infosys</Link></li>
-                <li><Link to="#" className="hover:text-blue">online.ufe.edu.mn</Link></li>
-                <li><Link to="#" className="hover:text-blue">Eoffice</Link></li>
-                <li><Link to="#" className="hover:text-blue">G-mail</Link></li>
+                <li><Link to="https://online.ufe.edu.mn/" className="hover:text-blue">online.ufe.edu.mn</Link></li>
+                <li><Link to="https://eoffice.ufe.edu.mn/" className="hover:text-blue">Eoffice</Link></li>
               </ul>
             </div>
 
@@ -103,18 +102,17 @@ const MainLayout = ({ children }) => {
             <div className="pt-8 md:pt-0">
               <ul className="space-y-2 text-gray-300 text-l">
                 <li><Link to="/gpa-calculator" className="hover:text-blue">Голч тооцоолуур</Link></li>
-                <li><Link to="#" className="hover:text-blue">Номын сангийн систем</Link></li>
-                <li><Link to="#" className="hover:text-blue">Бүтээлийн сан</Link></li>
+                <li><Link to="https://lib4u.online/?lib=ufe" className="hover:text-blue">Номын сангийн систем</Link></li>
+                <li><Link to="http://repository.ufe.edu.mn/xmlui/" className="hover:text-blue">Бүтээлийн сан</Link></li>
               </ul>
             </div>
 
             {/* Links 3 */}
             <div className="pt-8 md:pt-0">
               <ul className="space-y-2 text-gray-300 text-l">
-                <li><Link to="#" className="hover:text-blue">UFE 100 жил</Link></li>
-                <li><Link to="#" className="hover:text-blue">UFE network</Link></li>
+                <li><Link to="#" className="hover:text-blue">UFE календар</Link></li>
+                <li><Link to="#" className="hover:text-blue">UFE сонин</Link></li>
                 <li><Link to="#" className="hover:text-blue">UFE store</Link></li>
-                <li><Link to="#" className="hover:text-blue">UFE Tech</Link></li>
               </ul>
             </div>
           </div>
