@@ -10,6 +10,7 @@ import Creators from './pages/Creators';
 import StudentServices from './pages/service/shome';  
 import Volunteer from './pages/volunteer/volunteer';
 import Research from './pages/research/Research';
+import NewsDetail from './pages/NewsDetail';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/research/*" element={<Research />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
         </Routes>
       </MainLayout>
     </Router>
