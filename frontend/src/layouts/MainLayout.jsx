@@ -87,46 +87,48 @@ const MainLayout = ({ children }) => {
 
           {/* MOBILE MENU PANEL (VISIBLE < md) */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ${
-              menuOpen ? "max-h-96" : "max-h-0"
+            className={`md:hidden fixed inset-x-0 top-16 z-40 transform transition-all duration-300 ${
+              menuOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
             }`}
           >
-            <div className="flex flex-col px-4 pb-4 space-y-3 bg-white border-t">
-              <Link
-                to="/"
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-700 hover:text-primary"
-              >
-                Нүүр Хуудас
-              </Link>
-              <Link
-                to="/staff"
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-700 hover:text-primary"
-              >
-                Сургалтын Алба
-              </Link>
-              <Link
-                to="/research"
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-700 hover:text-primary"
-              >
-                Эрдэм Шинжилгээ
-              </Link>
-              <Link
-                to="/services"
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-700 hover:text-primary"
-              >
-                Оюутны үйлчилгээ
-              </Link>
-              <Link
-                to="/volunteer"
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-700 hover:text-primary"
-              >
-                Volunteer
-              </Link>
+            <div className="mx-3 mt-3 overflow-hidden bg-white shadow-xl rounded-2xl">
+              <nav className="divide-y">
+                <Link
+                  to="/"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Нүүр Хуудас
+                </Link>
+                <Link
+                  to="/staff"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Сургалтын Алба
+                </Link>
+                <Link
+                  to="/research"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Эрдэм Шинжилгээ
+                </Link>
+                <Link
+                  to="/services"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Оюутны үйлчилгээ
+                </Link>
+                <Link
+                  to="/volunteer"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Volunteer
+                </Link>
+              </nav>
             </div>
           </div>
         </nav>
