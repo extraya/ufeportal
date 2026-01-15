@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Autoplay,
-  Pagination,
-  Navigation,
-  EffectFade,
-} from "swiper/modules";
-
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "swiper/css/effect-fade";
-
 import "./swiper-fix.css";
 
 export default function Announcements() {
@@ -24,58 +15,49 @@ export default function Announcements() {
     const fetchData = async () => {
       const { data } = await supabase
         .from("announcements")
-        .select("*")
+        .select("id, title, priority")
         .eq("is_active", true)
         .order("priority", { ascending: false })
         .order("published_date", { ascending: false });
-
       setAnnouncements(data || []);
     };
-
     fetchData();
   }, []);
 
   return (
-    <div className="max-w-3xl px-4 py-10 mx-auto">
-      <h1 className="mb-6 text-2xl font-bold text-center">
-        Announcements
-      </h1>
+    <div className="relative p-4 space-y-3 bg-gray-200 rounded">
+      <h2 className="text-lg font-bold text-gray-800">Зар</h2>
 
-      <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectFade]}
-        slidesPerView={1}
-        loop={announcements.length > 1}
-        autoHeight
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        navigation
-        onSlideChange={(swiper) =>
-          setCurrent(swiper.realIndex + 1)
-        }
-        className="pb-12"
-      >
-        {announcements.map((a) => (
-          <SwiperSlide key={a.id}>
-            <div
-              className={`rounded-xl p-6 shadow-md bg-white min-h-[180px]
-                ${a.priority === "high" && "border-l-4 border-red-500 bg-red-50"}
-                ${a.priority === "normal" && "border-l-4 border-blue-500"}
-                ${a.priority === "low" && "border-l-4 border-gray-300"}
-              `}
-            >
-              <h3 className="mb-2 text-lg font-semibold">
+      {announcements.length > 0 && (
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          slidesPerView={1}
+          loop={announcements.length > 1}
+          autoplay={{ delay: 4000 }}
+          pagination={{ clickable: true }}
+          navigation={true} 
+          className="h-[150px]"
+          onSlideChange={(swiper) => setCurrent(swiper.realIndex + 1)}
+        >
+          {announcements.map((a) => (
+            <SwiperSlide key={a.id}>
+              <div
+                className={`p-2 bg-white rounded shadow text-xl font-semibold h-full flex items-center justify-center text-center${
+                  a.priority === "high"
+                    ? "border-l-4 border-red-500 bg-red-50"
+                    : a.priority === "normal"
+                    ? "border-l-4 border-blue-500"
+                    : "border-l-4 border-gray-300"
+                }`}
+              >
                 {a.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-gray-700">
-                {a.content}
-              </p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
-      {/* Numbering UNDER dots */}
-      <div className="mt-2 text-sm text-center text-gray-500">
+      <div className="text-center text-gray-500 text-s">
         {current} / {announcements.length}
       </div>
     </div>

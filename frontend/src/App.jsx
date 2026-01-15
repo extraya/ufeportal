@@ -18,15 +18,15 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/news" element={<NewsPage />} />
           <Route path="/programs" element={<ProgramsPage />} />
-          <Route path="/announcements" element={<Announcements />} />
           <Route path="/staff" element={<Staff />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
           <Route path="/creators" element={<Creators />} />
           <Route path="/services/*" element={<StudentServices />} />
           <Route path="/volunteer/*" element={<Volunteer />} />
           <Route path="/research/*" element={<Research />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/announcements" element={<Announcements />} />
         </Routes>
       </MainLayout>
     </Router>

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import NewsPage from './NewsPage';
+import Announcements from './Announcements';
 
 const HomePage = () => {
   return (
@@ -51,28 +53,17 @@ const HomePage = () => {
         </Link>
       </section>
 
-      {/* Stats Section */}
-      <section className="p-8 bg-white rounded-lg shadow-md">
-        <h2 className="mb-8 text-3xl font-bold text-center text-gray-800">Бидний нөлөө</h2>
-        <div className="grid grid-cols-1 gap-6 text-center md:grid-cols-4">
-          <div>
-            <div className="mb-2 text-4xl font-bold text-primary">5,000+</div>
-            <div className="text-gray-600">Оюутнууд</div>
-          </div>
-          <div>
-            <div className="mb-2 text-4xl font-bold text-primary">200+</div>
-            <div className="text-gray-600">Багш, ажилчид</div>
-          </div>
-          <div>
-            <div className="mb-2 text-4xl font-bold text-primary">50+</div>
-            <div className="text-gray-600">Хөтөлбөрүүд</div>
-          </div>
-          <div>
-            <div className="mb-2 text-4xl font-bold text-primary">95%</div>
-            <div className="text-gray-600">Төгсөлтийн хувь</div>
-          </div>
+      {/* News and Announcements Side by Side */}
+      <section className="grid grid-cols-1 gap-6 mb-12 md:grid-cols-2">
+        <div>
+          <NewsPage />
+        </div>
+        <div>
+          <Announcements />
         </div>
       </section>
+
+      
     </div>
   );
 };

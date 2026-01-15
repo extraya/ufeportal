@@ -7,6 +7,7 @@ import {
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa";
+import NewsPage from "../pages/NewsPage";
 
 const MainLayout = ({ children }) => {
   
@@ -155,9 +156,14 @@ const MainLayout = ({ children }) => {
             <div>
               <h3 className="mb-4 text-2xl font-bold">Чухал холбоос</h3>
               <ul className="space-y-2 text-gray-300">
-                <li><Link to="/gpa-calculator">Голч тооцоолуур</Link></li>
+                <li><Link to="/gpa-calculator" className="hover:font-extrabold">Голч тооцоолуур</Link></li>
+                <li><Link to="https://admission.ufe.edu.mn/" className="hover:font-extrabold">Элсэлт</Link></li>
+                <li><Link to="https://infosys.ufe.edu.mn/" className="hover:font-extrabold">Infosys</Link></li>
+                <li><Link to="https://online.ufe.edu.mn/" className="hover:font-extrabold">online.ufe.edu.mn</Link></li>
+                <li><Link to="https://eoffice.ufe.edu.mn/" className="hover:font-extrabold">Eoffice</Link></li>
               </ul>
             </div>
+
 
             <div />
             <div className="flex space-x-4">

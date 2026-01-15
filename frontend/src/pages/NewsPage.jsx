@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
-export default function Home() {
+export default function NewsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -9,50 +9,37 @@ export default function Home() {
     const fetchPosts = async () => {
       const { data, error } = await supabase
         .from("news")
-        .select("*")
-        .order("published_date", { ascending: false });
+        .select("id, title, image_url")
+        .order("published_date", { ascending: false })
+        .limit(5);
 
-      if (error) {
-        console.error(error);
-      } else {
-        setPosts(data);
-      }
+      if (error) console.error(error);
+      else setPosts(data);
 
       setLoading(false);
     };
-
     fetchPosts();
   }, []);
 
-  if (loading) {
-    return (
-      <p className="p-6 text-lg text-center text-gray-500">Loading...</p>
-    );
-  }
+  if (loading) return <p className="text-gray-500">Loading news...</p>;
 
   return (
-    <div className="max-w-6xl px-4 py-8 mx-auto">
-      <h1 className="mb-6 text-3xl font-bold text-center">Мэдээ</h1>
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="space-y-4">
+      <h2 className="text-lg font-bold text-gray-800">Сүүлийн мэдээ</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {posts.map((post) => (
           <div
             key={post.id}
-            className="overflow-hidden transition-shadow duration-300 bg-white rounded-lg shadow dark:bg-gray-800 hover:shadow-lg"
+            className="flex flex-col h-full p-3 transition bg-white rounded shadow hover:shadow-md"
           >
             {post.image_url && (
               <img
                 src={post.image_url}
                 alt={post.title}
-                className="object-cover w-full h-48"
+                className="object-cover w-full h-32 mb-2 rounded"
               />
             )}
-            <div className="p-4">
-              <h3 className="mb-2 text-xl font-semibold">{post.title}</h3>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                {post.content}
-              </p>
-            </div>
+            <p className="flex-1 text-base font-semibold line-clamp-3">{post.title}</p>
           </div>
         ))}
       </div>
