@@ -26,30 +26,12 @@ const HomePage = () => {
       {/* Quick Links */}
       <section className="grid grid-cols-1 gap-6 mb-12 md:grid-cols-3">
         <Link
-          to="/news"
-          className="p-8 text-center transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl group"
-        >
-          <div className="mb-4 text-5xl transition-transform group-hover:scale-110">📰</div>
-          <h3 className="mb-2 text-xl font-semibold text-gray-800">Мэдээ</h3>
-          <p className="text-gray-600">Мэдээлэлээс хоцрохгүй байх</p>
-        </Link>
-
-        <Link
           to="/programs"
           className="p-8 text-center transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl group"
         >
           <div className="mb-4 text-5xl transition-transform group-hover:scale-110">🎓</div>
           <h3 className="mb-2 text-xl font-semibold text-gray-800">БАКАЛАВРЫН хөтөлбөрүүд</h3>
           <p className="text-gray-600">Мэргэжил амжилттай эзэмших</p>
-        </Link>
-
-        <Link
-          to="/announcements"
-          className="p-8 text-center transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl group"
-        >
-          <div className="mb-4 text-5xl transition-transform group-hover:scale-110">📢</div>
-          <h3 className="mb-2 text-xl font-semibold text-gray-800">Зар</h3>
-          <p className="text-gray-600">Анхаарах бусад чухал зүйлс</p>
         </Link>
       </section>
 
