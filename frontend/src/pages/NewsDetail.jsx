@@ -40,7 +40,7 @@ export default function NewsDetail() {
     <div className="max-w-3xl p-4 mx-auto space-y-4">
       {/* Back button */}
       <Link
-        to="/news"
+        to="/"
         className="inline-block text-sm text-blue-600 hover:underline"
       >
         ← Буцах

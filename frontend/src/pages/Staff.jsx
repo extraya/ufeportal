@@ -9,10 +9,16 @@ export default function Staff() {
       const { data, error } = await supabase
         .from("staff")
         .select("id, full_name, position, department, bio, image_url, email")
-        .eq("is_active", true)
-        .order("full_name");
+        .eq("is_active", true);
 
-      if (!error) setStaff(data);
+      if (!error && data) {
+        const positionOrder = ["Бакалаврын сургалтын албаны дарга", "Бакалаврын сургалтын албаны орлогч дарга", "Сургалтын менежер", "Ахлах мэргэжилтэн", "Мэргэжилтэн", "Зохицуулагч"];
+        const sortedData = data.sort(
+          (a, b) => positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position)
+        );
+
+        setStaff(sortedData);
+      }
     };
 
     fetchStaff();

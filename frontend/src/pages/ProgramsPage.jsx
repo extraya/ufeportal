@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { supabase } from "../supabase";
 
 export default function Programs() {
+  const { degree } = useParams();
+
   const [programs, setPrograms] = useState([]);
   const [degrees, setDegrees] = useState([]);
   const [selectedDegree, setSelectedDegree] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  
+  // 1️⃣ Fetch degrees
   useEffect(() => {
     const fetchDegrees = async () => {
       const { data, error } = await supabase
@@ -16,71 +19,68 @@ export default function Programs() {
         .eq("is_active", true)
         .not("degree", "is", null);
 
-      if (!error && data.length > 0) {
-        const uniqueDegrees = [...new Set(data.map((d) => d.degree))].sort();
-        setDegrees(uniqueDegrees);
-        setSelectedDegree(uniqueDegrees[0]); // default
+      if (!error && data?.length) {
+        const unique = [...new Set(data.map(d => d.degree))].sort();
+        setDegrees(unique);
+
+        // URL-аас ирсэн degree valid эсэхийг шалгана
+        if (degree && unique.includes(degree)) {
+          setSelectedDegree(degree);
+        } else {
+          setSelectedDegree(unique[0]);
+        }
       }
     };
 
     fetchDegrees();
-  }, []);
+  }, [degree]);
 
-  
+  // 2️⃣ Fetch programs by degree
   useEffect(() => {
     if (!selectedDegree) return;
 
     const fetchPrograms = async () => {
       setLoading(true);
 
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("programs")
         .select("id, name, description, duration, degree, image_url")
         .eq("is_active", true)
         .eq("degree", selectedDegree)
         .order("name");
 
-      if (!error) setPrograms(data);
+      setPrograms(data || []);
       setLoading(false);
     };
 
     fetchPrograms();
   }, [selectedDegree]);
 
+  // 3️⃣ Loading state
+  if (loading) {
+    return (
+      <p className="mt-20 text-center text-gray-500">
+        Ачааллаж байна...
+      </p>
+    );
+  }
+
   return (
     <div className="max-w-6xl px-4 py-8 mx-auto">
-      <h1 className="mb-6 text-3xl font-bold text-center">Хөтөлбөрүүд</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center">
+        {selectedDegree} хөтөлбөрүүд
+      </h1>
 
-      {/* Dropdown */}
-      {degrees.length > 0 && (
-        <div className="flex justify-center mb-8">
-          <select
-            value={selectedDegree}
-            onChange={(e) => setSelectedDegree(e.target.value)}
-            className="px-4 py-2 text-sm bg-white border rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            {degrees.map((degree) => (
-              <option key={degree} value={degree}>
-                {degree}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      {/* Content */}
-      {loading ? (
-        <p className="text-center text-gray-500">Ачааллаж байна...</p>
-      ) : programs.length === 0 ? (
+      {programs.length === 0 ? (
         <p className="text-center text-gray-500">
-          Энэ түвшний хөтөлбөр олдсонгүй.
+          Энэ түвшний хөтөлбөр одоогоор алга байна.
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((p) => (
             <div
               key={p.id}
-              className="overflow-hidden transition-shadow duration-300 bg-white rounded-lg shadow hover:shadow-lg dark:bg-gray-800"
+              className="overflow-hidden transition-shadow bg-white rounded-lg shadow hover:shadow-lg"
             >
               {p.image_url && (
                 <img
@@ -91,19 +91,17 @@ export default function Programs() {
               )}
 
               <div className="p-4">
-                <h3 className="mb-2 text-xl font-semibold">{p.name}</h3>
-                <p className="mb-3 text-sm text-gray-700 dark:text-gray-300">
+                <h3 className="mb-2 text-xl font-semibold">
+                  {p.name}
+                </h3>
+
+                <p className="mb-3 text-sm text-gray-600">
                   {p.description}
                 </p>
 
-                <div className="flex gap-2 text-sm text-gray-500">
-                  <span className="px-2 py-1 bg-gray-100 rounded dark:bg-gray-700">
-                    {p.degree}
-                  </span>
-                  <span className="px-2 py-1 bg-gray-100 rounded dark:bg-gray-700">
-                    {p.duration}
-                  </span>
-                </div>
+                <span className="inline-block px-2 py-1 text-sm bg-gray-100 rounded">
+                  {p.duration}
+                </span>
               </div>
             </div>
           ))}

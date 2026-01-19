@@ -20,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/programs" element={<ProgramsPage />} />
+          <Route path="/programs/:degree" element={<ProgramsPage />} />
           <Route path="/staff" element={<Staff />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
           <Route path="/creators" element={<Creators />} />
