@@ -51,7 +51,7 @@ export default function NewsDetail() {
         <img
           src={post.image_url}
           alt={post.title}
-          className="object-cover w-full h-64 rounded"
+          className="object-cover w-full h-auto rounded"
         />
       )}
 
