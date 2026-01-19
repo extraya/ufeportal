@@ -49,7 +49,7 @@ const MainLayout = ({ children }) => {
       label: "Хөтөлбөрүүд",
       items: degrees.map((deg) => ({ name: deg, link: `/programs/${deg}` })),
     },
-    { label: "Сургалтын Алба", link: "/staff"},
+    { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},
     { label: "Оюутны үйлчилгээ", link: "/services" },
     { label: "Volunteer", link: "/volunteer" },

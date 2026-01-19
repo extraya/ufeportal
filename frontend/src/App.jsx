@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
 import ProgramsPage from './pages/ProgramsPage';
 import Announcements from './pages/Announcements';
-import Staff from './pages/Staff';
+import Bsa from './pages/bsa/bsa';
 import GpaCalculator from "./pages/GpaCalculator";
 import Creators from './pages/Creators';
 import StudentServices from './pages/service/shome';  
@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/programs" element={<ProgramsPage />} />
           <Route path="/programs/:degree" element={<ProgramsPage />} />
-          <Route path="/staff" element={<Staff />} />
+          <Route path="/bsa/*" element={<Bsa />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
           <Route path="/creators" element={<Creators />} />
           <Route path="/services/*" element={<StudentServices />} />
