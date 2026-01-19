@@ -11,6 +11,7 @@ export default function NewsPage() {
       const { data, error } = await supabase2
         .from("news")
         .select("id, title, image_url, description, created_at")
+        .eq("type", "Мэдээ")
         .order("created_at", { ascending: false })
         .limit(5);
 

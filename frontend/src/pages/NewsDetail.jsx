@@ -13,7 +13,6 @@ export default function NewsDetail() {
         .from("news")
         .select("title, description, image_url, created_at")
         .eq("id", id)
-        .eq("type", "Мэдээ")
         .single();
 
       if (error) {
