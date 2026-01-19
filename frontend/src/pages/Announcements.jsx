@@ -9,7 +9,7 @@ import "./swiper-fix.css";
 
 export default function Announcements() {
   const [announcements, setAnnouncements] = useState([]);
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +31,7 @@ export default function Announcements() {
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           slidesPerView={1}
-          loop={announcements.length > 1}
+          loop={announcements.length > 0}
           autoplay={{ delay: 4000 }}
           pagination={{ clickable: true }}
           navigation={true} 
@@ -56,6 +56,14 @@ export default function Announcements() {
                     {a.description}
                   </p>
                 )}
+              </div>
+              <div className="mt-3 text-right">
+                <button
+                  className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                  onClick={() => navigate(`/news/${a.id}`)}
+                >
+                  Дэлгэрэнгүй →
+                </button>
               </div>
             </SwiperSlide>
 

@@ -12,6 +12,7 @@ export default function NewsDetail() {
       const { data, error } = await supabase2
         .from("news")
         .select("title, description, image_url, created_at")
+        .eq("id", id)
         .eq("type", "Мэдээ")
         .single();
 
@@ -61,9 +62,9 @@ export default function NewsDetail() {
       </h1>
 
       {/* Date */}
-      {post.published_date && (
+      {post.created_at && (
         <p className="text-sm text-gray-500">
-          {new Date(post.published_date).toLocaleDateString()}
+          {new Date(post.created_at).toLocaleDateString()}
         </p>
       )}
 
