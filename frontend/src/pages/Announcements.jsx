@@ -46,7 +46,7 @@ export default function Announcements() {
           }
           pagination={announcements.length > 1 ? { clickable: true } : false}
           navigation={announcements.length > 1}
-          className="h-[160px]"
+          className="h-[180px] pb-8"
           onSlideChange={(swiper) => setCurrent(swiper.realIndex + 1)}
         >
           {announcements.map((a) => (
@@ -70,7 +70,7 @@ export default function Announcements() {
                 <div className="pt-3">
                   <button
                     onClick={() => navigate(`/news/${a.id}`)}
-                    className="w-full px-4 py-2 text-sm font-medium text-blue-700 rounded-md cursor-pointer bg-blue-50 hover:bg-blue-100 hover:text-blue-900 active:bg-blue-200"
+                    className="w-full px-4 py-2 mb-4 text-sm font-medium text-blue-700 transition-colors rounded-md bg-blue-50 hover:bg-blue-100 hover:text-blue-900"
                   >
                     Дэлгэрэнгүй →
                   </button>

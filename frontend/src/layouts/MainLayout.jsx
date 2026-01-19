@@ -245,13 +245,24 @@ const MainLayout = ({ children }) => {
 
             <div />
 
-            <div className="flex space-x-4 text-xl">
-              <FaFacebookF />
-              <FaInstagram />
-              <FaTwitter />
-              <FaYoutube />
-              <FaLinkedinIn />
+            <div className="flex space-x-4 text-2xl">
+              <a href="https://www.facebook.com/ufe.edu.mn" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
+              <a href="https://www.instagram.com/ufe.edu.mn/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://twitter.com/ufe_edu_mn" target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </a>
+              <a href="https://www.youtube.com/@ufemedia" target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
+              </a>
+              <a href="https://www.linkedin.com/school/ufemongolia/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn />
+              </a>
             </div>
+
           </div>
 
           <p className="mt-10 text-sm text-center text-gray-400">
