@@ -67,14 +67,15 @@ export default function Announcements() {
                 </div>
 
                 {/* Read more */}
-                <div className="pt-3 text-right">
+                <div className="pt-3">
                   <button
-                    className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
                     onClick={() => navigate(`/news/${a.id}`)}
+                    className="w-full px-4 py-2 text-sm font-medium text-blue-700 rounded-md cursor-pointer bg-blue-50 hover:bg-blue-100 hover:text-blue-900 active:bg-blue-200"
                   >
                     Дэлгэрэнгүй →
                   </button>
                 </div>
+
               </div>
             </SwiperSlide>
           ))}
