@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase2 } from "../supabase2";
 
 export default function NewsDetail() {
   const { id } = useParams();
@@ -9,10 +9,10 @@ export default function NewsDetail() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabase2
         .from("news")
-        .select("title, content, image_url, published_date")
-        .eq("id", id)
+        .select("title, description, image_url, created_at")
+        .eq("type", "Мэдээ")
         .single();
 
       if (error) {
@@ -69,7 +69,7 @@ export default function NewsDetail() {
 
       {/* Content */}
       <p className="leading-relaxed text-gray-700 whitespace-pre-line">
-        {post.content}
+        {post.description}
       </p>
     </div>
   );

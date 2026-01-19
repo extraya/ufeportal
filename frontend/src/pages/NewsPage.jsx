@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase";
 import { Link } from "react-router-dom";
+import { supabase2 } from "../supabase2";
 
 export default function NewsPage() {
   const [posts, setPosts] = useState([]);
@@ -8,10 +8,10 @@ export default function NewsPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabase2
         .from("news")
-        .select("id, title, image_url")
-        .order("published_date", { ascending: false })
+        .select("id, title, image_url, description, created_at")
+        .order("created_at", { ascending: false })
         .limit(5);
 
       if (error) console.error(error);
