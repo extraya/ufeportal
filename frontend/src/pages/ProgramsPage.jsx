@@ -6,7 +6,8 @@ export default function ProgramsPage() {
   const { degree } = useParams(); // current selected degree
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const degreeFromState = location.state?.degree || "";
+  
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
@@ -53,8 +54,8 @@ export default function ProgramsPage() {
         {programs.map((p) => (
           <Link
             key={p.id}
-            to={`/program/id/${p.id}`}
-            state={{ degree }} // pass degree for back button
+            to={`/programs/id/${p.id}`}
+            state={{ degree: degree }} // pass degree for back button
             className="relative flex flex-col overflow-hidden transition-shadow bg-white rounded shadow hover:shadow-lg group"
           >
             {p.img_url && (

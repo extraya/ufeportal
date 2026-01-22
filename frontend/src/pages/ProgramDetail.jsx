@@ -31,10 +31,9 @@ export default function ProgramDetail() {
             admission,
             dorm,
             url,
-            img_url,
-            description
+            img_url
           `)
-          .eq("id", id) // Works even if id is string
+          .eq("id", Number(id)) // Works even if id is string
           .single();
 
         if (error) throw error;
@@ -105,12 +104,6 @@ export default function ProgramDetail() {
         {program.dorm && <p>🏠 Dorm: {program.dorm}</p>}
       </div>
 
-      {/* Description */}
-      {program.description && (
-        <p className="mt-4 leading-relaxed text-gray-700 whitespace-pre-line">
-          {program.description}
-        </p>
-      )}
 
       {/* External URL */}
       {program.url && (
