@@ -21,11 +21,11 @@ const MainLayout = ({ children }) => {
       const { data, error } = await supabase
         .from("programs")
         .select("degree")
-        .eq("is_active", true)
         .not("degree", "is", null);
 
       if (!error && data) {
         setDegrees([...new Set(data.map((d) => d.degree))]);
+        console.log("Degrees from DB:", [...new Set(data.map(d => d.degree))]);
       }
     };
 

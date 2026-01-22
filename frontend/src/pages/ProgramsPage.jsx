@@ -9,58 +9,91 @@ export default function Programs() {
   const [degrees, setDegrees] = useState([]);
   const [selectedDegree, setSelectedDegree] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // 1️⃣ Fetch degrees
+  // 1️⃣ Fetch all unique degrees
   useEffect(() => {
     const fetchDegrees = async () => {
       const { data, error } = await supabase
         .from("programs")
         .select("degree")
-        .eq("is_active", true)
         .not("degree", "is", null);
 
       if (!error && data?.length) {
         const unique = [...new Set(data.map(d => d.degree))].sort();
         setDegrees(unique);
 
-        // URL-аас ирсэн degree valid эсэхийг шалгана
+        // set initial selectedDegree from URL or first degree
         if (degree && unique.includes(degree)) {
           setSelectedDegree(degree);
         } else {
           setSelectedDegree(unique[0]);
         }
+      } else if (error) {
+        console.error("Error fetching degrees:", error);
+        setError("Degrees could not be loaded.");
       }
     };
 
     fetchDegrees();
   }, [degree]);
 
-  // 2️⃣ Fetch programs by degree
+  // 2️⃣ Fetch programs by selected degree
   useEffect(() => {
     if (!selectedDegree) return;
 
     const fetchPrograms = async () => {
       setLoading(true);
+      setError("");
 
-      const { data } = await supabase
-        .from("programs")
-        .select("id, name, description, duration, degree, image_url")
-        .eq("is_active", true)
-        .eq("degree", selectedDegree)
-        .order("name");
+      try {
+        const { data, error } = await supabase
+          .from("programs")
+          .select(`
+            id,
+            degree,
+            major,
+            university,
+            country,
+            city,
+            cost,
+            lang,
+            transfer,
+            admission,
+            dorm,
+            url,
+            img_url
+          `)
+          // Use ilike to avoid Unicode mismatch issues
+          .ilike("degree", selectedDegree)
+          .order("major");
 
-      setPrograms(data || []);
+        if (error) throw error;
+
+        setPrograms(data || []);
+      } catch (err) {
+        console.error("Error fetching programs:", err);
+        setError("Programs could not be loaded.");
+      }
+
       setLoading(false);
     };
 
     fetchPrograms();
   }, [selectedDegree]);
 
-  // 3️⃣ Loading state
   if (loading) {
     return (
       <p className="mt-20 text-center text-gray-500">
         Ачааллаж байна...
+      </p>
+    );
+  }
+
+  if (error) {
+    return (
+      <p className="mt-20 text-center text-red-500">
+        {error}
       </p>
     );
   }
@@ -77,31 +110,49 @@ export default function Programs() {
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {programs.map((p) => (
+          {programs.map(p => (
             <div
               key={p.id}
               className="overflow-hidden transition-shadow bg-white rounded-lg shadow hover:shadow-lg"
             >
-              {p.image_url && (
+              {p.img_url && (
                 <img
-                  src={p.image_url}
-                  alt={p.name}
+                  src={p.img_url}
+                  alt={p.major}
                   className="object-cover w-full h-48"
                 />
               )}
 
               <div className="p-4">
-                <h3 className="mb-2 text-xl font-semibold">
-                  {p.name}
-                </h3>
+                <h3 className="mb-2 text-xl font-semibold">{p.major}</h3>
 
-                <p className="mb-3 text-sm text-gray-600">
-                  {p.description}
+                <p className="mb-2 text-sm text-gray-600">
+                  🏫 {p.university}
                 </p>
 
-                <span className="inline-block px-2 py-1 text-sm bg-gray-100 rounded">
-                  {p.duration}
-                </span>
+                <p className="mb-2 text-sm text-gray-600">
+                  📍 {p.country}, {p.city}
+                </p>
+
+                <p className="mb-2 text-sm text-gray-600">
+                  💰 {p.cost}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-3 text-xs">
+                  <span className="px-2 py-1 bg-gray-100 rounded">{p.lang}</span>
+                  <span className="px-2 py-1 bg-gray-100 rounded">{p.transfer}</span>
+                </div>
+
+                {p.url && (
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-4 text-sm font-medium text-blue-600 hover:underline"
+                  >
+                    Дэлгэрэнгүй →
+                  </a>
+                )}
               </div>
             </div>
           ))}
