@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase2 } from "../supabase2";
 
 export default function ProgramDetail() {
   const { id } = useParams();
@@ -33,7 +33,7 @@ export default function ProgramDetail() {
   useEffect(() => {
     const fetchProgram = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabase2
           .from("programs")
           .select(`
             id,

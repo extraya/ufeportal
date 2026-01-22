@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase2 } from "../supabase2";
 
 export default function ProgramsPage() {
   const { degree } = useParams(); // current selected degree
@@ -11,7 +11,7 @@ export default function ProgramsPage() {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await supabase2
           .from("programs")
           .select(`
             id,
