@@ -70,7 +70,7 @@ export default function ProgramsPage() {
             {/* Hover overlay */}
             <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 bg-black rounded opacity-0 bg-opacity-40 group-hover:opacity-100">
               <button className="px-4 py-1.5 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">
-                Унших
+                Дэлгэрэнгүй
               </button>
             </div>
 
