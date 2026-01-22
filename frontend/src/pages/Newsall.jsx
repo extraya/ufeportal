@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase2 } from "../supabase2";
 
-export default function NewsPage() {
+export default function NewsAll() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ export default function NewsPage() {
         .select("id, title, image_url, description, created_at")
         .eq("type", "Мэдээ")
         .order("created_at", { ascending: false })
-        .limit(4);
+
 
       if (error) console.error(error);
       else setPosts(data);
@@ -28,14 +28,9 @@ export default function NewsPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between"> 
-        <h2 className="text-lg font-bold text-gray-800">Сүүлийн мэдээ</h2>
-        <button className="px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">  
-          <Link to="/newsall">Бүгдийг үзэх</Link>
-        </button>
-      </div>
-      
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <h2 className="text-lg font-bold text-gray-800">Сүүлийн мэдээ</h2>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post.id}

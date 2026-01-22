@@ -47,7 +47,7 @@ const MainLayout = ({ children }) => {
     { label: "Нүүр Хуудас", link: "/" },
     {
       label: "Хөтөлбөрүүд",
-      items: degrees.map((deg) => ({ name: deg, link: `/programs/${deg}` })),
+      items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })),
     },
     { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},

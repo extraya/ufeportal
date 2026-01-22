@@ -12,7 +12,7 @@ import Volunteer from './pages/volunteer/volunteer';
 import Research from './pages/research/Research';
 import NewsDetail from './pages/NewsDetail';
 import ProgramDetail from './pages/ProgramDetail';
-
+import NewsAll from './pages/Newsall';
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/programs" element={<ProgramsPage />} />
-          <Route path="/programs/:degree" element={<ProgramsPage />} />
-          <Route path="/program/:id" element={<ProgramDetail />} />
+          <Route path="/programs/degree/:degree" element={<ProgramsPage />} />
+          <Route path="/programs/id/:id" element={<ProgramDetail />} />
           <Route path="/bsa/*" element={<Bsa />} />
           <Route path="/gpa-calculator" element={<GpaCalculator />} />
           <Route path="/creators" element={<Creators />} />
@@ -32,6 +32,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/newsall" element={<NewsAll />} />
         </Routes>
       </MainLayout>
     </Router>
