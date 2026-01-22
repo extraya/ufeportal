@@ -20,11 +20,12 @@ export default function ProgramsPage() {
             degree,
             country,
             city,
-            cost,
+            tuition,
             lang,
-            transfer,
-            url,
-            img_url
+            description,
+            video_url,
+            img_url, 
+            duration
           `)
           .eq("degree", degree)
           .order("major");

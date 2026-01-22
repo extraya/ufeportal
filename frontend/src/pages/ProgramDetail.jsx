@@ -25,13 +25,12 @@ export default function ProgramDetail() {
             degree,
             country,
             city,
-            cost,
+            tuition,
             lang,
-            transfer,
-            admission,
-            dorm,
-            url,
-            img_url
+            description,
+            video_url,
+            img_url, 
+            duration
           `)
           .eq("id", Number(id)) // Works even if id is string
           .single();
@@ -97,24 +96,25 @@ export default function ProgramDetail() {
         {program.country && program.city && (
           <p>📍 {program.country}, {program.city}</p>
         )}
-        {program.cost && <p>💰 {program.cost}</p>}
+        {program.tuition && <p>💰 {program.tuition}</p>}
         {program.lang && <p>🗣 Хэл: {program.lang}</p>}
-        {program.transfer && <p>🔄 Трансфер: {program.transfer}</p>}
-        {program.admission && <p>📝 Admission: {program.admission}</p>}
-        {program.dorm && <p>🏠 Dorm: {program.dorm}</p>}
+        {program.description && <p>📝 Eрөнхий мэдээлэл: {program.description}</p>}
+        {program.duration && <p>⏱ Суралцах хугацаа: {program.duration}</p>}
       </div>
 
 
       {/* External URL */}
-      {program.url && (
-        <a
-          href={program.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
-        >
-          Дэлгэрэнгүй мэдээлэл
-        </a>
+      {program.video_url && (
+        <div className="mt-4">
+          <iframe
+            width="100%"
+            height="300"
+            src={program.video_url}
+            title={program.major}
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
+        </div>
       )}
     </div>
   );
