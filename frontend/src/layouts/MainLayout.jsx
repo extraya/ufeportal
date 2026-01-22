@@ -25,7 +25,7 @@ const MainLayout = ({ children }) => {
 
       if (!error && data) {
         setDegrees([...new Set(data.map((d) => d.degree))]);
-        console.log("Degrees from DB:", [...new Set(data.map(d => d.degree))]);
+        //console.log("Degrees from DB:", [...new Set(data.map(d => d.degree))]);
       }
     };
 
