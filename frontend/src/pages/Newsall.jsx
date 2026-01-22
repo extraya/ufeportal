@@ -29,7 +29,13 @@ export default function NewsAll() {
   return (
     <div className="space-y-4">
       <h2 className="text-lg font-bold text-gray-800">Сүүлийн мэдээ</h2>
-
+      {/* Back button */}
+      <Link
+        to="/"
+        className="inline-block text-sm text-blue-600 hover:underline"
+      >
+        ← Буцах
+      </Link>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {posts.map((post) => (
           <Link
