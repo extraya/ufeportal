@@ -11,7 +11,7 @@ export default function AddProgram() {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const BUCKET_NAME = "program-images"; // Correct bucket
+  const BUCKET_NAME = "images"; // Correct bucket
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -54,7 +54,7 @@ export default function AddProgram() {
       }
 
       // Insert into programs table
-      const { error: insertError } = await supabase
+      const { error: insertError } = await supabase2
         .from("programs")
         .insert([
           {
@@ -64,7 +64,6 @@ export default function AddProgram() {
             duration: duration.trim() || "",
             img_url: imageUrl || "",
             university: university.trim() || "Unknown",
-            is_active: true,
             created_at: new Date().toISOString(),
           },
         ]);
