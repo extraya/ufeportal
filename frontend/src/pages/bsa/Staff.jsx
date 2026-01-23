@@ -26,7 +26,7 @@ export default function Staff() {
 
   return (
     <div className="px-4 py-10 mx-auto max-w-7xl">
-      <h1 className="mb-8 text-3xl font-bold text-center">Ажилтчид</h1>
+      <h1 className="mb-8 text-3xl font-bold text-center">Албаны бүрэлдэхүүн</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {staff.map((s) => (
