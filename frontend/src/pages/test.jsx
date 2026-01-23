@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "../supabase";
+import { supabase2 } from "../supabase2";
 
 export default function AddProgram() {
   const [major, setMajor] = useState("");
@@ -38,14 +38,14 @@ export default function AddProgram() {
         const filePath = `programs/${fileName}`;
 
         // Upload image
-        const { error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabase2.storage
           .from(BUCKET_NAME)
           .upload(filePath, image);
 
         if (uploadError) throw uploadError;
 
         // Get public URL
-        const { data: urlData, error: urlError } = supabase.storage
+        const { data: urlData, error: urlError } = supabase2.storage
           .from(BUCKET_NAME)
           .getPublicUrl(filePath);
 
