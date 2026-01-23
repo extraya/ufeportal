@@ -7,7 +7,7 @@ import {
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { supabase } from "../supabase";
+import { supabase2 } from "../supabase2";
 import Dropdown from "./Dropdown";
 
 const MainLayout = ({ children }) => {
@@ -18,7 +18,7 @@ const MainLayout = ({ children }) => {
   // Fetch degrees for Programs dropdown
   useEffect(() => {
     const fetchDegrees = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabase2
         .from("programs")
         .select("degree")
         .not("degree", "is", null);
