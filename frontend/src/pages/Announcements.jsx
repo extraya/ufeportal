@@ -31,8 +31,8 @@ export default function Announcements() {
   }, []);
 
   return (
-    <div className="relative p-4 space-y-3 rounded">
-      <h2 className="text-lg font-bold text-gray-800">Зар</h2>
+    <div className="relative mt-4 space-y-3">
+      <h2 className="mb-6 text-lg font-bold text-gray-800">Зар</h2>
 
       {announcements.length > 0 ? (
         <Swiper

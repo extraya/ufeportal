@@ -243,7 +243,17 @@ const MainLayout = ({ children }) => {
               </ul>
             </div>
 
-            <div />
+            <div>
+              <h3 className="mb-4 text-2xl font-bold">Санал хүсэлт</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>
+                  <a href="https://ufeforms.pages.dev/" target="_blank" rel="noopener noreferrer" className="hover:font-extrabold">
+                    Оюутны хүсэлтийн маягтууд
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
 
             <div className="flex space-x-4 text-2xl">
               <a href="https://www.facebook.com/ufe.edu.mn" target="_blank" rel="noopener noreferrer">
