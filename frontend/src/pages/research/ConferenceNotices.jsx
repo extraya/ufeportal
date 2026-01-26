@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase2 } from "../../supabase2";
+import { MdCampaign } from "react-icons/md";
+import { FaThumbtack } from "react-icons/fa";
+
 
 export default function ConferenceNotices() {
   const [notices, setNotices] = useState([]);
@@ -31,8 +34,8 @@ export default function ConferenceNotices() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-10">
-      <h2 className="text-3xl font-bold text-gray-800">
-        📢 Хурлын зар
+      <h2 className="flex items-center gap-2 text-3xl font-bold text-gray-800">
+        <MdCampaign className="text-3xl text-blue-600" /> Хурлын зар
       </h2>
       <p className="text-gray-600">
         Болох хурлын зар, дэлгэрэнгүй мэдээлэл.
@@ -53,10 +56,11 @@ export default function ConferenceNotices() {
         >
           {/* PIN badge */}
           {index === 0 && (
-            <div className="inline-block px-3 py-1 mb-2 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
-              📌 Сүүлд нэмэгдсэн зар
+            <div className="inline-flex items-center gap-1 px-3 py-1 mb-2 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
+              <FaThumbtack className="text-blue-500" /> Сүүлд нэмэгдсэн зар
             </div>
           )}
+
 
           {/* Image */}
           {post.image_url && (

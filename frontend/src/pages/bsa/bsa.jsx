@@ -1,8 +1,15 @@
 import { Routes, Route, NavLink } from "react-router-dom";
-
-import  Staff from "./Staff";
+import Staff from "./Staff";
 import Org from "./org";    
 import Rules from "./rules";  
+
+// React icons
+import { 
+  FaGraduationCap, 
+  FaMoneyBillWave, 
+  FaRocket, 
+  FaChalkboardTeacher 
+} from "react-icons/fa";
 
 export default function Bsa() {
   const BASE = "/bsa";
@@ -15,6 +22,7 @@ export default function Bsa() {
 
   return (
     <div className="flex flex-col gap-8 px-4 py-10 mx-auto md:flex-row max-w-7xl">
+      
       {/* Sidebar menu */}
       <aside className="md:w-64">
         <NavLink to={BASE} className="block group">
@@ -29,8 +37,8 @@ export default function Bsa() {
               key={item.path}
               to={`${BASE}/${item.path}`}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-md transition-colors 
-                 ${isActive ? "bg-blue-600 text-white" : "hover:bg-gray-100 text-gray-800"}`
+                `px-4 py-2 rounded-md transition-colors cursor-pointer
+                 ${isActive ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`
               }
             >
               {item.title}
@@ -58,9 +66,10 @@ export default function Bsa() {
                   чанартай боловсролын орчныг бүрдүүлэх үндсэн нэгж юм.
                 </p>
 
+                {/* Sections with icons */}
                 <section>
-                  <h2 className="mb-3 text-xl font-semibold text-gray-800">
-                    🎓 Сургалтын үйл ажиллагаа
+                  <h2 className="flex items-center gap-2 mb-3 text-xl font-semibold text-gray-800">
+                    <FaGraduationCap className="text-xl text-blue-600" /> Сургалтын үйл ажиллагаа
                   </h2>
                   <ul className="space-y-1 text-gray-600 list-disc list-inside">
                     <li>Модуль хичээлийн сургалтын зохион байгуулалт</li>
@@ -71,8 +80,8 @@ export default function Bsa() {
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-semibold text-gray-800">
-                    💰 Тэтгэлэг, санхүүгийн дэмжлэг
+                  <h2 className="flex items-center gap-2 mb-3 text-xl font-semibold text-gray-800">
+                    <FaMoneyBillWave className="text-xl text-green-600" /> Тэтгэлэг, санхүүгийн дэмжлэг
                   </h2>
                   <ul className="space-y-1 text-gray-600 list-disc list-inside">
                     <li>Ректорын нэрэмжит тэтгэлэг</li>
@@ -82,8 +91,8 @@ export default function Bsa() {
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-semibold text-gray-800">
-                    🚀 Карьер хөгжил, хөдөлмөр эрхлэлт
+                  <h2 className="flex items-center gap-2 mb-3 text-xl font-semibold text-gray-800">
+                    <FaRocket className="text-xl text-red-500" /> Карьер хөгжил, хөдөлмөр эрхлэлт
                   </h2>
                   <ul className="space-y-1 text-gray-600 list-disc list-inside">
                     <li>Оюутны карьер хөгжлийн зөвлөгөө</li>
@@ -93,8 +102,8 @@ export default function Bsa() {
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-xl font-semibold text-gray-800">
-                    🧑‍🏫 Оюутанд чиглэсэн үйлчилгээ
+                  <h2 className="flex items-center gap-2 mb-3 text-xl font-semibold text-gray-800">
+                    <FaChalkboardTeacher className="text-xl text-yellow-500" /> Оюутанд чиглэсэн үйлчилгээ
                   </h2>
                   <ul className="space-y-1 text-gray-600 list-disc list-inside">
                     <li>Оюутны зөвлөх үйлчилгээ</li>

@@ -1,3 +1,5 @@
+import { FaBook, FaSearch } from "react-icons/fa";
+
 export default function LibraryLinks() {
   return (
     <div className="max-w-xl p-6 mx-auto bg-white border shadow-sm rounded-2xl">
@@ -15,7 +17,7 @@ export default function LibraryLinks() {
           rel="noopener noreferrer"
           className="flex items-center justify-center w-full px-5 py-3 text-white transition bg-blue-600 rounded-xl hover:bg-blue-700"
         >
-          📚 СЭЗИС-ийн бүтээлийн сан
+          <FaBook className="text-xl" /> СЭЗИС-ийн бүтээлийн сан
         </a>
 
         <a
@@ -24,7 +26,7 @@ export default function LibraryLinks() {
           rel="noopener noreferrer"
           className="flex items-center justify-center w-full px-5 py-3 text-blue-600 transition border border-blue-600 rounded-xl hover:bg-blue-50"
         >
-          🔍 Номын сангийн электрон каталог
+          <FaSearch className="text-xl" /> Номын сангийн электрон каталог
         </a>
       </div>
     </div>

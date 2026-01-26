@@ -1,3 +1,5 @@
+import { FaFileAlt, FaHourglassHalf, FaDownload } from "react-icons/fa";
+
 export default function WritingStandards() {
   const standards = [
     {
@@ -107,14 +109,14 @@ export default function WritingStandards() {
               `}
             >
               <div className="flex items-center gap-3">
-                <span className="text-blue-600">📄</span>
+                <FaFileAlt className="text-blue-600" />
                 <span className="leading-relaxed">
                   {item.title}
                 </span>
               </div>
 
               <span className="text-lg">
-                {disabled ? "⏳" : "⬇️"}
+                {disabled ? <FaFileAlt /> : <FaDownload />}
               </span>
             </a>
           );
