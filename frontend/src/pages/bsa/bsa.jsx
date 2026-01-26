@@ -2,6 +2,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Staff from "./Staff";
 import Org from "./org";    
 import Rules from "./rules";  
+import Req from "./req";
 
 // React icons
 import { 
@@ -18,6 +19,7 @@ export default function Bsa() {
     { title: "Бүрэлдэхүүн", path: "staff" },
     { title: "Бүтэц", path: "org" },
     { title: "Журам", path: "rules" },
+    { title: "Хүсэлт гаргах", path: "req" },
   ];
 
   return (
@@ -119,6 +121,7 @@ export default function Bsa() {
           <Route path="staff" element={<Staff />} />  
           <Route path="org" element={<Org />} />
           <Route path="rules" element={<Rules />} />
+          <Route path="req" element={<Req />} />
         </Routes>
       </main>
     </div>
