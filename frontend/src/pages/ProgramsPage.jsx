@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase2 } from "../supabase2";
+import { FaUniversity, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ProgramsPage() {
   const { degree } = useParams(); // current selected degree
@@ -76,8 +77,16 @@ export default function ProgramsPage() {
 
             <div className="p-4">
               <h3 className="mb-2 text-xl font-semibold">{p.major}</h3>
-              {p.university && <p className="text-sm text-gray-600">🏫 {p.university}</p>}
-              <p className="text-sm text-gray-600">📍 {p.country}, {p.city}</p>
+
+              {p.university && (
+                <p className="flex items-center gap-2 text-sm text-gray-600">
+                  <FaUniversity className="text-blue-600" /> {p.university}
+                </p>
+              )}
+
+              <p className="flex items-center gap-2 text-sm text-gray-600">
+                <FaMapMarkerAlt className="text-red-500" /> {p.country}, {p.city}
+              </p>
             </div>
           </Link>
         ))}
