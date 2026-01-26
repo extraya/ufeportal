@@ -4,11 +4,11 @@ export default function ConferenceProceedings() {
   const [open, setOpen] = useState(null);
 
   const pdfs = [ 
-    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XIII БАГА ХУРАЛ", file: "/pdfs/2021.pdf" }, 
-    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XIV БАГА ХУРАЛ", file: "/pdfs/2022.pdf" }, 
-    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XV БАГА ХУРАЛ", file: "/pdfs/2023.pdf" }, 
-    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XVI БАГА ХУРАЛ", file: "/pdfs/2024.pdf" }, 
-    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XVII БАГА ХУРАЛ", file: "/pdfs/2025.pdf" }, 
+    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XIII БАГА ХУРАЛ", file: "../pdfs/2021.pdf" }, 
+    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XIV БАГА ХУРАЛ", file: "../pdfs/2022.pdf" }, 
+    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XV БАГА ХУРАЛ", file: "../pdfs/2023.pdf" }, 
+    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XVI БАГА ХУРАЛ", file: "../pdfs/2024.pdf" }, 
+    { title: "ОЮУТНЫ ЭРДЭМ ШИНЖИЛГЭЭНИЙ XVII БАГА ХУРАЛ", file: "../pdfs/2025.pdf" }, 
   ];
 
   return (
