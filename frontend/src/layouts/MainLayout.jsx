@@ -51,7 +51,7 @@ const MainLayout = ({ children }) => {
     },
     { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},
-    { label: "Оюутны үйлчилгээ", link: "/services" },
+    { label: "Оюутны хөгжил", link: "/services" },
     { label: "Volunteer", link: "/volunteer" },
   ];
 

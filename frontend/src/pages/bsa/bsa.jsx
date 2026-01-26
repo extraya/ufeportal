@@ -2,6 +2,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 
 import  Staff from "./Staff";
 import Org from "./org";
+import Rules from "./rules";
 
 export default function Bsa() {
   const BASE = "/bsa";
@@ -9,6 +10,7 @@ export default function Bsa() {
   const menuItems = [
     { title: "Бүрэлдэхүүн", path: "staff" },
     { title: "Бүтэц", path: "org" },
+    { title: "Журам", path: "rules" },
   ];
 
   return (

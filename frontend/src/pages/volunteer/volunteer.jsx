@@ -19,7 +19,9 @@ export default function Volunteer() {
       
       {/* Sidebar menu */}
       <aside className="md:w-64">
-        <h1 className="mb-6 text-3xl font-bold">Бидний хувь нэмэр</h1>
+        <NavLink to={BASE} className="block group">
+          <h1 className="mb-6 text-3xl font-bold tracking-wide text-gray-900 transition group-hover:text-blue-700">Оюутны хувь нэмэр</h1>
+        </NavLink>
         <nav className="flex flex-col space-y-2">
           {menuItems.map((item) => (
             <NavLink
@@ -39,7 +41,7 @@ export default function Volunteer() {
       {/* Main content */}
       <main className="flex-1">
         <Routes>
-          <Route index element={<div className="text-gray-500">Оюутнууд хэрхэн бусдад хувь нэмрийн төлөвлөгөөг оруулж болох талаар</div>} />
+          <Route index element={<div className="text-gray-500">Оюутнууд хэрхэн бусдад хувь нэмэр оруулж болох талаар</div>} />
           <Route path="roadmap" element={<Roadmap />} />
           <Route path="social-practice" element={<SocialPractice />} />
           <Route path="mentor-student" element={<MentorStudent />} />

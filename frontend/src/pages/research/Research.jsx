@@ -27,7 +27,9 @@ export default function Research() {
     <div className="flex flex-col gap-8 px-4 py-10 mx-auto md:flex-row max-w-7xl">
       {/* Sidebar menu */}
       <aside className="md:w-64">
-        <h1 className="mb-6 text-3xl font-bold">Эрдэм шинжилгээ</h1>
+        <NavLink to={BASE} className="block group">
+          <h1 className="mb-6 text-3xl font-bold tracking-wide text-gray-900 transition group-hover:text-blue-700">Эрдэм шинжилгээ</h1>
+        </NavLink>
         <nav className="flex flex-col space-y-2">
           {menuItems.map((item) => (
             <NavLink

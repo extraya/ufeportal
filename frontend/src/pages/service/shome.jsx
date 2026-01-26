@@ -29,7 +29,9 @@ export default function StudentServices() {
       
       {/* Sidebar menu */}
       <aside className="md:w-64">
-        <h1 className="mb-6 text-3xl font-bold">Оюутны үйлчилгээ</h1>
+        <NavLink to={BASE} className="block group">
+          <h1 className="mb-6 text-3xl font-bold tracking-wide text-gray-900 transition group-hover:text-blue-700">Оюутны хөгжлийн төв</h1>
+        </NavLink>
         <nav className="flex flex-col space-y-2">
           {menuItems.map((item) => (
             <NavLink
