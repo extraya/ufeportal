@@ -251,6 +251,11 @@ const MainLayout = ({ children }) => {
                     Оюутны хүсэлтийн маягтууд
                   </a>
                 </li>
+                <li>
+                  <a href="https://ufenu.sharepoint.com/sites/UFE-files/DocLib/pdf%20bolgoson/ajillavar-ufe-2020.pdf?CT=1769401252899&OR=ItemsView" target="_blank" rel="noopener noreferrer" className="hover:font-extrabold">
+                    Ажиллавар татах
+                  </a>
+                </li>
               </ul>
             </div>
             
