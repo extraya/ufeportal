@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import {useState} from "react";
+import { FaRegFileAlt } from "react-icons/fa";
 
 const sections = [
   {
@@ -154,38 +156,63 @@ const sections = [
 ];
 
 export default function Rules() {
+  const [search, setSearch] = useState("");
+
+  // Ensure sections is always an array
+  const filteredSections = (sections || []).filter(
+    (s) =>
+      s.title.toLowerCase().includes(search.toLowerCase()) ||
+      s.desc.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {sections.map((s, i) => (
-        <Link
-          key={i}
-          to={s.to}
-          className="p-6 transition bg-white border border-gray-200 shadow-sm group rounded-xl hover:-translate-y-1 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-        >
-          {/* Badge */}
-          <span className="inline-block px-3 py-1 mb-3 text-xs font-medium text-blue-700 rounded-full bg-blue-50">
-            {s.badge}
-          </span>
+    <div className="px-4 py-8 mx-auto space-y-6 max-w-7xl">
+      {/* Search Bar */}
+      <div className="relative w-full max-w-md">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Хайх…"
+          className="w-full px-4 py-2 text-gray-700 placeholder-gray-400 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+        />
+      </div>
 
-          {/* Title */}
-          <h3 className="mb-2 text-lg font-semibold text-gray-800 group-hover:text-blue-700">
-            {s.title}
-          </h3>
+      {/* Grid of sections */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredSections.length === 0 && (
+          <p className="text-gray-500 col-span-full">Хайсан зүйл олдсонгүй.</p>
+        )}
 
-          {/* Description */}
-          <p className="text-sm leading-relaxed text-gray-600">
-            {s.desc}
-          </p>
-
-          {/* Action hint */}
-          <div className="flex items-center mt-4 text-sm font-medium text-blue-600">
-            Дэлгэрэнгүй
-            <span className="ml-2 transition-transform group-hover:translate-x-1">
-              →
+        {filteredSections.map((s, i) => (
+          <Link
+            key={i}
+            to={s.to}
+            className="p-6 transition bg-white border border-gray-200 shadow-sm group rounded-xl hover:-translate-y-1 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+          >
+            {/* Badge with optional icon */}
+            <span className="inline-flex items-center gap-1 px-3 py-1 mb-3 text-xs font-medium text-blue-700 rounded-full bg-blue-50">
+              <FaRegFileAlt className="text-sm text-blue-500" /> {s.badge}
             </span>
-          </div>
-        </Link>
-      ))}
+
+            {/* Title */}
+            <h3 className="mb-2 text-lg font-semibold text-gray-800 group-hover:text-blue-700">
+              {s.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm leading-relaxed text-gray-600">{s.desc}</p>
+
+            {/* Action hint */}
+            <div className="flex items-center mt-4 text-sm font-medium text-blue-600">
+              Дэлгэрэнгүй
+              <span className="ml-2 transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
