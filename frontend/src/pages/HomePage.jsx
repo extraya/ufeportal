@@ -3,6 +3,7 @@ import NewsPage from './NewsPage';
 import Announcements from './Announcements';
 import PosterSwiper from './Poster';
 //import TestInsert from './test';
+import ProgramsGlobe from './globe.jsx/global';
 
 const HomePage = () => {
   return (

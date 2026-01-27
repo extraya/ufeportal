@@ -13,6 +13,7 @@ import Research from './pages/research/Research';
 import NewsDetail from './pages/NewsDetail';
 import ProgramDetail from './pages/ProgramDetail';
 import NewsAll from './pages/Newsall';
+import Globe from './pages/globe.jsx/global';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/newsall" element={<NewsAll />} />
+          <Route path="/globe" element={<Globe />} />
         </Routes>
       </MainLayout>
     </Router>

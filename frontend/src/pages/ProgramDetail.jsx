@@ -87,7 +87,7 @@ export default function ProgramDetail() {
         onClick={() =>
           degreeFromState
             ? navigate(`/programs/degree/${degreeFromState}`)
-            : navigate("/programs")
+            : navigate("/globe")
         }
         className="inline-block text-sm text-blue-600 hover:underline"
       >

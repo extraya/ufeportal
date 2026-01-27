@@ -45,14 +45,15 @@ const MainLayout = ({ children }) => {
   // Desktop nav items
   const navItems = [
     { label: "Нүүр Хуудас", link: "/" },
-    {
-      label: "Хөтөлбөрүүд",
-      items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })),
-    },
+    //{
+      //label: "Хөтөлбөрүүд",
+      //items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })),
+    //},
     { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},
     { label: "Оюутны хөгжил", link: "/services" },
     { label: "Volunteer", link: "/volunteer" },
+    { label: "globe", link: "/globe" },
   ];
 
   // Toggle mobile dropdown
