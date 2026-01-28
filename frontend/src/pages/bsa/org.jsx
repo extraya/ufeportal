@@ -56,10 +56,10 @@ export default function Org() {
             {/* Zoom controls */}
             <div className="absolute z-10 flex gap-2 top-2 left-2">
               <button onClick={zoomIn} className="px-3 py-1 bg-white rounded shadow">
-                ➕
+                +
               </button>
               <button onClick={zoomOut} className="px-3 py-1 bg-white rounded shadow">
-                ➖
+                -
               </button>
               <button onClick={resetZoom} className="px-3 py-1 bg-white rounded shadow">
                 Reset
