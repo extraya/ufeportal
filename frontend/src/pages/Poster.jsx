@@ -20,7 +20,7 @@ export default function PosterSwiper() {
         setCurrent((prev) => (prev + 1) % posters.length);
         setFade(true);
       }, 1000);
-    }, 8000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [posters.length]);

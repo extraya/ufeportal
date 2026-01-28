@@ -38,6 +38,38 @@ const COUNTRY_COORDS = {
   Taiwan: { lat: 23.7, lng: 121.0 },
 };
 
+const COUNTRY_FLAGS = {
+  Mongolia: "https://flagcdn.com/w40/mn.png",
+  Russia: "https://flagcdn.com/w40/ru.png",
+  Japan: "https://flagcdn.com/w40/jp.png",
+  "South Korea": "https://flagcdn.com/w40/kr.png",
+  China: "https://flagcdn.com/w40/cn.png",
+  "United States": "https://flagcdn.com/w40/us.png",
+  Germany: "https://flagcdn.com/w40/de.png",
+  Australia: "https://flagcdn.com/w40/au.png",
+  Canada: "https://flagcdn.com/w40/ca.png",
+  Finland: "https://flagcdn.com/w40/fi.png",
+  Switzerland: "https://flagcdn.com/w40/ch.png",
+  Taiwan: "https://flagcdn.com/w40/tw.png",
+};
+
+const FLAG_CODES = {
+  Mongolia: "mn",
+  Russia: "ru",
+  Japan: "jp",
+  "South Korea": "kr",
+  China: "cn",
+  "United States": "us",
+  Germany: "de",
+  Australia: "au",
+  Canada: "ca",
+  Finland: "fi",
+  Switzerland: "ch",
+  Taiwan: "tw",
+};
+
+const getFlagCode = (country) => FLAG_CODES[country] || "un";
+
 export default function ProgramsGlobePage() {
   const globeRef = useRef();
   const [programs, setPrograms] = useState([]);
@@ -89,40 +121,27 @@ export default function ProgramsGlobePage() {
     if (!globeRef.current) return;
     const controls = globeRef.current.controls();
     controls.enableZoom = true;
-
-    let frameId;
-
-    const animate = () => {
-      if (isRotating) {
-        controls.autoRotate = true;
-        controls.update();
-      } else {
-        controls.autoRotate = false;
-      }
-      frameId = requestAnimationFrame(animate);
-    };
-    animate();
-
-    const canvas = globeRef.current.renderer().domElement;
-    const handlePointerEnter = () => setIsRotating(false);
-    const handlePointerLeave = () => setIsRotating(true);
-
-    canvas.addEventListener("pointerenter", handlePointerEnter);
-    canvas.addEventListener("pointerleave", handlePointerLeave);
-
-    return () => {
-      cancelAnimationFrame(frameId);
-      canvas.removeEventListener("pointerenter", handlePointerEnter);
-      canvas.removeEventListener("pointerleave", handlePointerLeave);
-    };
+    controls.enableRotate = true;
+    controls.autoRotate = isRotating;
   }, [isRotating]);
 
+
   const handleCountryClick = (p) => {
-    globeRef.current.controls().autoRotate = false;
+    const controls = globeRef.current.controls();
+
+    controls.autoRotate = false; // pause only
     setIsRotating(false);
+
     setSelectedCountry(p.country);
     filterPrograms(selectedDegree, p.country);
+
+    globeRef.current.pointOfView(
+      { lat: p.lat, lng: p.lng, altitude: 1.6 },
+      700
+    );
   };
+
+
 
   const handleDegreeChange = (e) => {
     const degree = e.target.value;
@@ -131,10 +150,16 @@ export default function ProgramsGlobePage() {
   };
 
   const handleReset = () => {
+    const controls = globeRef.current.controls();
+
+    controls.autoRotate = true;
+    setIsRotating(true);
+
     setSelectedCountry(null);
     setFilteredPrograms(programs);
-    setIsRotating(true);
   };
+
+
 
   const filterPrograms = (degree, country) => {
     let filtered = [...programs];
@@ -201,18 +226,42 @@ export default function ProgramsGlobePage() {
             height={700}
             backgroundColor="rgba(0,0,0,0)"
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-            pointsData={countries}
-            pointLat="lat"
-            pointLng="lng"
-            pointAltitude={0.12}
-            pointRadius={(p) => 0.45 + 0.12 * p.count}
-            pointLabel={(p) => `<b>${p.country}</b><br/>Хөтөлбөрүүд: ${p.count}`}
-            pointColor={() => "#F0FDF4"}
-            onPointClick={handleCountryClick}
+
+            htmlElementsData={countries}
+            htmlLat={(d) => d.lat}
+            htmlLng={(d) => d.lng}
+            htmlAltitude={() => 0.12}
+
+            htmlElement={(d) => {
+              const el = document.createElement("div");
+              el.style.pointerEvents = "auto";
+              el.style.transform = "translate(-50%, -50%)";
+              el.style.zIndex = "5";
+
+              const img = document.createElement("img");
+              img.src = `https://flagcdn.com/w40/${getFlagCode(d.country)}.png`;
+              img.style.width = "28px";
+              img.style.height = "20px";
+              img.style.borderRadius = "3px";
+              img.style.cursor = "pointer";
+              img.style.boxShadow = "0 2px 6px rgba(0,0,0,.4)";
+
+              img.addEventListener("pointerdown", (e) => {
+                e.stopPropagation(); // 🔴 reliable
+              });
+
+              img.addEventListener("click", () => {
+                handleCountryClick(d);
+              });
+
+              el.appendChild(img);
+              return el;
+            }}
+
             cameraPosition={{ lat: 20, lng: 0, altitude: 2.0 }}
-            globeRotation={[Math.PI / 10, 0, 0]}
-            animateIn={true}
+            animateIn
           />
+
         </div>
 
         {/* Programs */}

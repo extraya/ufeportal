@@ -45,15 +45,14 @@ const MainLayout = ({ children }) => {
   // Desktop nav items
   const navItems = [
     { label: "Нүүр Хуудас", link: "/" },
-    //{
-      //label: "Хөтөлбөрүүд",
-      //items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })),
-    //},
+    {
+      label: "Хөтөлбөрүүд", 
+      items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })).concat({name: "Globe view", link: "/globe"})
+    },
     { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},
     { label: "Оюутны хөгжил", link: "/services" },
-    { label: "Volunteer", link: "/volunteer" },
-    { label: "globe", link: "/globe" },
+    { label: "Volunteer", link: "/volunteer" }
   ];
 
   // Toggle mobile dropdown
@@ -86,7 +85,7 @@ const MainLayout = ({ children }) => {
             <div className="items-center hidden space-x-8 md:flex">
               {navItems.map((nav) =>
                 nav.items ? (
-                  <Dropdown key={nav.label} label={nav.label} items={nav.items} />
+                  <Dropdown key={nav.label} label={nav.label} items={nav.items}/>
                 ) : (
                   <Link
                     key={nav.label}

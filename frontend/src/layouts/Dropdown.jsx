@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaGlobe } from "react-icons/fa";
 
 export default function Dropdown({ label, items }) {
   return (
@@ -12,13 +13,21 @@ export default function Dropdown({ label, items }) {
       <div
         className="absolute left-0 z-50 w-64 text-white transition-all duration-300 transform scale-95 shadow-xl opacity-0 pointer-events-none bg-primary top-full group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto"
       >
-        <ul className="py-3">
+        <ul className="py-3 ">
           {items.map((item) => (
-            <li key={item.name}>
+            <li key={item.name} className="hover:text-yellow-300">
+              {/* Optional divider above Globe view */}
+              {item.link === "/globe" && <hr className="my-1 border-gray-200" />}
+
               <Link
                 to={item.link}
-                className="block px-6 py-3 text-sm transition hover:bg-blue-800"
+                className={`
+                  block px-6 py-3 text-sm transition hover:bg-blue-800
+                  ${item.link === "/globe" ? "font-bold text-yellow-300 flex items-center gap-2" : ""}
+                `}
               >
+                {/* Globe icon only for Globe view */}
+                {item.link === "/globe" && <FaGlobe />}
                 {item.name}
               </Link>
             </li>
