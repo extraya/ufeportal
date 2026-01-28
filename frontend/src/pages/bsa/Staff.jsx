@@ -100,7 +100,7 @@ export default function Staff() {
                   <img
                     src={s.image_url}
                     alt={s.full_name}
-                    className="max-h-[260px] md:max-h-[360px] object-contain"
+                    className="max-h-[260px] md:max-h-[180px] object-contain"
                     draggable={false}
                   />
                 </div>
