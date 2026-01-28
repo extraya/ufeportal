@@ -93,48 +93,48 @@ export default function Staff() {
               }
             `}
           >
-            <div className="grid items-center gap-8 p-6 md:h-full md:gap-10 md:p-10 md:grid-cols-2">
+            <div className="grid items-center gap-6 p-4 sm:p-6 md:h-full md:gap-10 md:p-10 md:grid-cols-2">
               {/* IMAGE FRAME */}
               <div className="relative flex justify-center">
                 <div className="relative p-3 border shadow-2xl md:p-4 rounded-2xl bg-white/10 backdrop-blur border-white/20">
                   <img
                     src={s.image_url}
                     alt={s.full_name}
-                    className="max-h-[260px] md:max-h-[180px] object-contain"
+                    className="max-h-[180px] sm:max-h-[240px] md:max-h-[360px] object-contain"
                     draggable={false}
                   />
                 </div>
               </div>
 
-
               {/* INFO */}
               <div className="text-center text-white md:text-left">
-                <p className="text-sm tracking-widest uppercase opacity-80">
+                <p className="text-xs tracking-widest uppercase sm:text-sm opacity-80">
                   {s.department}
                 </p>
 
-                <h2 className="mt-2 text-4xl font-extrabold md:text-4xl">
+                <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl md:text-4xl">
                   {s.full_name}
                 </h2>
 
-                <p className="mt-1 text-xl font-semibold md:text-xl text-white/80">
+                <p className="mt-1 text-lg font-semibold sm:text-xl md:text-xl text-white/80">
                   {s.position}
                 </p>
 
-                <p className="mt-6 leading-relaxed md:mt-6 md:text-base text-white/90">
+                <p className="mt-4 text-sm leading-relaxed sm:text-base md:text-base text-white/90">
                   {s.bio}
                 </p>
 
                 {s.email && (
                   <a
                     href={`mailto:${s.email}`}
-                    className="inline-block mt-6 font-medium underline text-white/90 hover:text-white"
+                    className="inline-block mt-4 text-sm font-medium underline text-white/90 hover:text-white sm:text-base"
                   >
                     {s.email}
                   </a>
                 )}
               </div>
             </div>
+
           </div>
         ))}
 
