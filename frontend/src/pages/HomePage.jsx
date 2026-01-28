@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import NewsPage from './NewsPage';
 import Announcements from './Announcements';
 import PosterSwiper from './Poster';
-//import TestInsert from './test';
-import ProgramsGlobe from './globe.jsx/global';
+import Vid from './vid';
 
 const HomePage = () => {
   return (
@@ -17,11 +16,8 @@ const HomePage = () => {
         </div>
         <div>
           <Announcements />
+          <Vid />
         </div>
-        {/*<div className="container p-6 mx-auto">
-          <h1 className="mb-6 text-3xl font-bold">Welcome to Homepage</h1>
-          <TestInsert />
-        </div>*/}
       </section>
 
       
