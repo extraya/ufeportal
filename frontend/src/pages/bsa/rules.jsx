@@ -64,7 +64,7 @@ const sections = [
     badge: "",
   },
   {
-    title: "Хөгжлтйн семинарын удирдамж",
+    title: "Хөгжлийн семинарын удирдамж",
     desc: "",
     to: "https://ufenu.sharepoint.com/:b:/s/UFE-files/ETYIaH-OpOVMnnqK73j5GK0Bni8QZWv2lGaa2GAGN14fpQ?e=avhnBr",
     badge: "Удирдамж",

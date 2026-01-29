@@ -252,7 +252,7 @@ export default function ProgramsGlobePage() {
             <Link
               key={p.id}
               to={`/programs/id/${p.id}`}
-              className="relative flex flex-col overflow-hidden transition-shadow bg-white rounded shadow hover:shadow-lg group min-h-[300px] sm:max-h-[400px]"
+              className="relative flex flex-col overflow-hidden transition-shadow bg-white rounded shadow hover:shadow-lg group min-h-[300px] sm:max-h-[350px]"
             >
               {p.img_url && (
                 <img src={p.img_url} alt={p.major} className="object-cover w-full h-48" />

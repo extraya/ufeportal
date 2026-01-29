@@ -1,0 +1,19 @@
+/* Mobile tweaks for FullCalendar toolbar */
+@media (max-width: 768px) {
+  .fc-header-toolbar .fc-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .fc-header-toolbar .fc-toolbar-title {
+    font-size: 1rem;
+  }
+  .fc .fc-event {
+    font-size: 10px;
+    padding: 1px 2px;
+    border-radius: 2px;
+  }
+  .fc .fc-daygrid-event-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
