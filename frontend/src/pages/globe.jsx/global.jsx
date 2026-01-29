@@ -38,21 +38,6 @@ const COUNTRY_COORDS = {
   Taiwan: { lat: 23.7, lng: 121.0 },
 };
 
-const COUNTRY_FLAGS = {
-  Mongolia: "https://flagcdn.com/w40/mn.png",
-  Russia: "https://flagcdn.com/w40/ru.png",
-  Japan: "https://flagcdn.com/w40/jp.png",
-  "South Korea": "https://flagcdn.com/w40/kr.png",
-  China: "https://flagcdn.com/w40/cn.png",
-  "United States": "https://flagcdn.com/w40/us.png",
-  Germany: "https://flagcdn.com/w40/de.png",
-  Australia: "https://flagcdn.com/w40/au.png",
-  Canada: "https://flagcdn.com/w40/ca.png",
-  Finland: "https://flagcdn.com/w40/fi.png",
-  Switzerland: "https://flagcdn.com/w40/ch.png",
-  Taiwan: "https://flagcdn.com/w40/tw.png",
-};
-
 const FLAG_CODES = {
   Mongolia: "mn",
   Russia: "ru",
@@ -76,9 +61,9 @@ export default function ProgramsGlobePage() {
   const [filteredPrograms, setFilteredPrograms] = useState([]);
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedDegree, setSelectedDegree] = useState("БҮГД");
-  const [isRotating, setIsRotating] = useState(true);
+
+  // Start with Mongolia selected
+  const [selectedCountry, setSelectedCountry] = useState("Mongolia");
 
   // Fetch programs
   useEffect(() => {
@@ -88,7 +73,12 @@ export default function ProgramsGlobePage() {
         if (error) throw error;
 
         setPrograms(data || []);
-        setFilteredPrograms(data || []);
+
+        // Initial filter by Mongolia
+        const initialFiltered = (data || []).filter(
+          (p) => COUNTRY_NAME_MAP[p.country] === "Mongolia"
+        );
+        setFilteredPrograms(initialFiltered);
 
         // Count programs per country
         const countryCountMap = {};
@@ -116,64 +106,42 @@ export default function ProgramsGlobePage() {
     fetchPrograms();
   }, []);
 
-  // Auto-rotate globe continuously
+  // Update rotation whenever selectedCountry changes
   useEffect(() => {
     if (!globeRef.current) return;
     const controls = globeRef.current.controls();
-    controls.enableZoom = true;
-    controls.enableRotate = true;
-    controls.autoRotate = isRotating;
-  }, [isRotating]);
+    controls.autoRotate = selectedCountry === "БҮГД" || selectedCountry === "Mongolia";
+  }, [selectedCountry]);
 
-
-  const handleCountryClick = (p) => {
-    const controls = globeRef.current.controls();
-
-    controls.autoRotate = false; // pause only
-    setIsRotating(false);
-
-    setSelectedCountry(p.country);
-    filterPrograms(selectedDegree, p.country);
-
-    globeRef.current.pointOfView(
-      { lat: p.lat, lng: p.lng, altitude: 1.6 },
-      700
-    );
+  const filterPrograms = (country) => {
+    let filtered = [...programs];
+    if (country && country !== "БҮГД") {
+      filtered = filtered.filter((p) => COUNTRY_NAME_MAP[p.country] === country);
+    }
+    setFilteredPrograms(filtered);
   };
 
+  const handleCountryClick = (p) => {
+    setSelectedCountry(p.country);
+    filterPrograms(p.country);
 
-
-  const handleDegreeChange = (e) => {
-    const degree = e.target.value;
-    setSelectedDegree(degree);
-    filterPrograms(degree, selectedCountry);
+    if (globeRef.current) {
+      globeRef.current.pointOfView(
+        { lat: p.lat, lng: p.lng, altitude: 1.6 },
+        700
+      );
+    }
   };
 
   const handleReset = () => {
-    const controls = globeRef.current.controls();
-
-    controls.autoRotate = true;
-    setIsRotating(true);
-
-    setSelectedCountry(null);
-    setFilteredPrograms(programs);
-  };
-
-
-
-  const filterPrograms = (degree, country) => {
-    let filtered = [...programs];
-    if (degree !== "БҮГД") filtered = filtered.filter((p) => p.degree === degree);
-    if (country) filtered = filtered.filter((p) => COUNTRY_NAME_MAP[p.country] === country);
-    setFilteredPrograms(filtered);
+    setSelectedCountry("БҮГД");
+    filterPrograms("БҮГД");
   };
 
   if (loading)
     return <p className="mt-20 text-center text-gray-500">Ачааллаж байна...</p>;
   if (!countries.length)
     return <p className="mt-20 text-center text-gray-500">Одоогоор ямар ч улс алга.</p>;
-
-  const degrees = ["БҮГД", ...new Set(programs.map((p) => p.degree))];
 
   return (
     <div className="px-4 mx-auto max-w-7xl">
@@ -188,23 +156,35 @@ export default function ProgramsGlobePage() {
           </p>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <label className="font-semibold">Түвшин:</label>
+              <label className="font-semibold">Улс:</label>
               <select
-                value={selectedDegree}
-                onChange={handleDegreeChange}
+                value={selectedCountry}
+                onChange={(e) => {
+                  const country = e.target.value;
+                  setSelectedCountry(country);
+                  filterPrograms(country);
+
+                  if (country !== "БҮГД" && COUNTRY_COORDS[country] && globeRef.current) {
+                    const coords = COUNTRY_COORDS[country];
+                    globeRef.current.pointOfView(
+                      { lat: coords.lat, lng: coords.lng, altitude: 1.6 },
+                      700
+                    );
+                  }
+                }}
                 className="px-3 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {degrees.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
+                <option value="БҮГД">БҮГД</option>
+                {countries.map((c) => (
+                  <option key={c.country} value={c.country}>
+                    {c.country} ({c.count})
                   </option>
                 ))}
               </select>
             </div>
 
-            {selectedCountry && (
+            {selectedCountry !== "БҮГД" && (
               <div className="flex items-center gap-2 text-gray-500">
-                Сонгосон улс: <b>{selectedCountry}</b>
                 <button
                   onClick={handleReset}
                   className="px-2 py-1 text-xs text-white bg-gray-500 rounded hover:bg-gray-600"
@@ -217,21 +197,19 @@ export default function ProgramsGlobePage() {
         </div>
       </header>
 
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col gap-6 lg:flex-row">
         {/* Globe */}
-        <div className="flex-[3] flex justify-center items-start min-h-[700px]">
+        <div className="flex-[3] flex justify-center items-start min-h-[400px] lg:min-h-[700px]">
           <Globe
             ref={globeRef}
-            width={700}
-            height={700}
+            width={typeof window !== "undefined" ? Math.min(window.innerWidth * 0.9, 700) : 700}
+            height={typeof window !== "undefined" ? Math.min(window.innerWidth * 0.9, 700) : 700}
             backgroundColor="rgba(0,0,0,0)"
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-
             htmlElementsData={countries}
             htmlLat={(d) => d.lat}
             htmlLng={(d) => d.lng}
             htmlAltitude={() => 0.12}
-
             htmlElement={(d) => {
               const el = document.createElement("div");
               el.style.pointerEvents = "auto";
@@ -245,36 +223,35 @@ export default function ProgramsGlobePage() {
               img.style.borderRadius = "3px";
               img.style.cursor = "pointer";
               img.style.boxShadow = "0 2px 6px rgba(0,0,0,.4)";
-
-              img.addEventListener("pointerdown", (e) => {
-                e.stopPropagation(); // 🔴 reliable
-              });
-
-              img.addEventListener("click", () => {
-                handleCountryClick(d);
-              });
-
+              img.addEventListener("pointerdown", (e) => e.stopPropagation());
+              img.addEventListener("click", () => handleCountryClick(d));
               el.appendChild(img);
               return el;
             }}
-
             cameraPosition={{ lat: 20, lng: 0, altitude: 2.0 }}
-            animateIn
+            onGlobeReady={() => {
+              if (globeRef.current) {
+                const controls = globeRef.current.controls();
+                controls.enableZoom = true;
+                controls.enableRotate = true;
+                controls.autoRotate = true; 
+                controls.autoRotateSpeed = 1;
+              }
+            }}
           />
-
         </div>
 
         {/* Programs */}
         <div
-          className={`grid flex-1 gap-6 sm:grid-cols-1 ${
+          className={`flex-1 grid gap-6 sm:grid-cols-1 ${
             filteredPrograms.length > 1 ? "auto-rows-fr" : "auto-rows-auto"
-          } items-start`}
+          }`}
         >
           {filteredPrograms.map((p) => (
             <Link
               key={p.id}
               to={`/programs/id/${p.id}`}
-              className="relative flex flex-col overflow-hidden transition-shadow bg-white rounded shadow hover:shadow-lg group min-h-[400px]"
+              className="relative flex flex-col overflow-hidden transition-shadow bg-white rounded shadow hover:shadow-lg group min-h-[300px] sm:max-h-[400px]"
             >
               {p.img_url && (
                 <img src={p.img_url} alt={p.major} className="object-cover w-full h-48" />
@@ -297,7 +274,6 @@ export default function ProgramsGlobePage() {
               </div>
             </Link>
           ))}
-
           {filteredPrograms.length === 0 && (
             <p className="mt-4 text-gray-500">Сонгосон улсад хөтөлбөр алга байна.</p>
           )}
