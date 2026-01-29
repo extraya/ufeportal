@@ -205,7 +205,8 @@ export default function ProgramsGlobePage() {
             width={typeof window !== "undefined" ? Math.min(window.innerWidth * 0.9, 700) : 700}
             height={typeof window !== "undefined" ? Math.min(window.innerWidth * 0.9, 700) : 700}
             backgroundColor="rgba(0,0,0,0)"
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+            //"//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+            globeImageUrl="https://unpkg.com/three-globe@2.45.0/example/img/earth-day.jpg"
             htmlElementsData={countries}
             htmlLat={(d) => d.lat}
             htmlLng={(d) => d.lng}
