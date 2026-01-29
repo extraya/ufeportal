@@ -29,7 +29,7 @@ export default function NewsPage() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between"> 
-        <h2 className="text-lg font-bold text-gray-800">Сүүлийн мэдээ</h2>
+        <h2 className="text-lg font-bold text-gray-800">Шинэ мэдээ</h2>
         <button className="px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">  
           <Link to="/newsall">Бүгдийг үзэх</Link>
         </button>

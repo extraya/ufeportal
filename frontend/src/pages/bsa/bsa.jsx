@@ -3,6 +3,7 @@ import Staff from "./Staff";
 import Org from "./org";    
 import Rules from "./rules";  
 import Req from "./req";
+import Others from "./others";
 
 // React icons
 import { 
@@ -20,6 +21,7 @@ export default function Bsa() {
     { title: "Бүтэц", path: "org" },
     { title: "Журам", path: "rules" },
     { title: "Хүсэлт гаргах", path: "req" },
+    { title: "Бусад албаны чиг үүрэг", path: "others"}
   ];
 
   return (
@@ -122,6 +124,7 @@ export default function Bsa() {
           <Route path="org" element={<Org />} />
           <Route path="rules" element={<Rules />} />
           <Route path="req" element={<Req />} />
+          <Route path="others" element={<Others/>}/>
         </Routes>
       </main>
     </div>
