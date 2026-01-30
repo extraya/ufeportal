@@ -5,8 +5,13 @@ export default function Staff() {
   const [staff, setStaff] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const startX = useRef(null);
+  /* ===== SWIPE STATE ===== */
+  const startX = useRef(0);
+  const startY = useRef(0);
+  const deltaX = useRef(0);
   const isDragging = useRef(false);
+
+  const SWIPE_THRESHOLD = 60;
 
   useEffect(() => {
     const fetchStaff = async () => {
@@ -46,22 +51,41 @@ export default function Staff() {
       Math.min(i + 1, staff.length - 1)
     );
 
-  /* ===== DRAG LOGIC (desktop + mobile) ===== */
+  /* ===== POINTER / SWIPE LOGIC ===== */
   const onPointerDown = (e) => {
     startX.current = e.clientX;
+    startY.current = e.clientY;
+    deltaX.current = 0;
     isDragging.current = true;
+
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e) => {
+    if (!isDragging.current) return;
+
+    const dx = e.clientX - startX.current;
+    const dy = e.clientY - startY.current;
+
+    // Ignore vertical scrolling
+    if (Math.abs(dy) > Math.abs(dx)) {
+      isDragging.current = false;
+      return;
+    }
+
+    deltaX.current = dx;
   };
 
   const onPointerUp = (e) => {
-    if (!isDragging.current || startX.current === null) return;
+    if (!isDragging.current) return;
 
-    const diff = startX.current - e.clientX;
+    if (deltaX.current < -SWIPE_THRESHOLD) next();
+    if (deltaX.current > SWIPE_THRESHOLD) prev();
 
-    if (diff > 80) next();
-    if (diff < -80) prev();
-
-    startX.current = null;
     isDragging.current = false;
+    deltaX.current = 0;
+
+    e.currentTarget.releasePointerCapture(e.pointerId);
   };
 
   if (!staff.length) return null;
@@ -74,10 +98,11 @@ export default function Staff() {
 
       {/* HERO CARD */}
       <div
-        className="relative overflow-hidden rounded-3xl bg-primary shadow-[0_30px_80px_rgba(0,0,0,0.35)] min-h-[480px] md:min-h-[480px] select-none"
+        className="relative overflow-hidden rounded-3xl bg-primary shadow-[0_30px_80px_rgba(0,0,0,0.35)] min-h-[480px] select-none touch-pan-y"
         onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
+        onPointerCancel={onPointerUp}
       >
         {staff.map((s, index) => (
           <div
@@ -94,7 +119,7 @@ export default function Staff() {
             `}
           >
             <div className="grid items-center gap-6 p-4 sm:p-6 md:h-full md:gap-10 md:p-10 md:grid-cols-2">
-              {/* IMAGE FRAME */}
+              {/* IMAGE */}
               <div className="relative flex justify-center">
                 <div className="relative p-3 border shadow-2xl md:p-4 rounded-2xl bg-white/10 backdrop-blur border-white/20">
                   <img
@@ -116,11 +141,11 @@ export default function Staff() {
                   {s.full_name}
                 </h2>
 
-                <p className="mt-1 text-lg font-semibold sm:text-xl md:text-xl text-white/80">
+                <p className="mt-1 text-lg font-semibold text-white/80">
                   {s.position}
                 </p>
 
-                <p className="mt-4 text-sm leading-relaxed sm:text-base md:text-base text-white/90">
+                <p className="mt-4 text-sm leading-relaxed sm:text-base text-white/90">
                   {s.bio}
                 </p>
 
@@ -134,7 +159,6 @@ export default function Staff() {
                 )}
               </div>
             </div>
-
           </div>
         ))}
 
