@@ -77,12 +77,17 @@ export default function Vid() {
               )}
 
               {/* Image if no YouTube link */}
-              {post.image_url && !embedUrl && (
-                <img
-                  src={post.image_url}
-                  alt={post.title}
-                  className="object-cover w-full mb-2 rounded h-36"
-                />
+              {!post.image_url && embedUrl && (
+                <div className="relative w-full mb-2 overflow-hidden rounded h-36">
+                  <iframe
+                    src={embedUrl}
+                    title={post.title}
+                    className="absolute top-0 left-0 w-full transition-opacity duration-300 h-36 "
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               )}
 
               {/* Title */}
