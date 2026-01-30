@@ -256,6 +256,11 @@ const MainLayout = ({ children }) => {
                     Ажиллавар татах
                   </a>
                 </li>
+                <li>
+                  <Link to="/calendar" className="hover:font-extrabold">
+                    Календар
+                  </Link>
+                </li>
               </ul>
             </div>
             

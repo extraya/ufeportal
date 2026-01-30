@@ -11,9 +11,10 @@ export default function Cal() {
   const calendarRef = useRef(null);
 
   const TYPE_COLORS = {
-    exam: "#ef4444",
-    Game: "#22c55e",
-    BSA: "#3b82f6"
+    "БСА-ны ажил" : "#ef4444",
+    "Оюутны хөгжлийн төвийн ажил" : "#22c55e",
+    "Оюутны холбоо, Оюутны клуб" : "#3b82f6",
+    "Олон улсын хамтарсан хөтөлбөр": "#3b82f6"
   };
 
   useEffect(() => {
@@ -38,12 +39,11 @@ export default function Cal() {
 
   // Zoom to a day on mobile
   const zoomToDay = (date) => {
-    if (window.innerWidth <= 768) {
+    //if (window.innerWidth <= 768) {
       const calendarApi = calendarRef.current.getApi();
       calendarApi.changeView("dayGridDay", date);
       setIsMobileDayView(true);
-      // ✅ removed scrollIntoView to prevent jumping
-    }
+    //}
   };
 
   // Clicking a day
@@ -70,20 +70,24 @@ export default function Cal() {
       <div className="flex flex-wrap justify-center gap-3 mb-2 text-xs md:justify-start md:text-sm">
         <span className="flex items-center gap-2">
           <span className="w-2 h-2 bg-red-500 rounded-full md:w-3 md:h-3"></span>
-          Exam
+          БСА-ны ажил
         </span>
         <span className="flex items-center gap-2">
           <span className="w-2 h-2 bg-green-500 rounded-full md:w-3 md:h-3"></span>
-          Holiday
+          Оюутны хөгжлийн төвийн ажил
         </span>
         <span className="flex items-center gap-2">
           <span className="w-2 h-2 bg-blue-500 rounded-full md:w-3 md:h-3"></span>
-          Meeting
+          Оюутны холбоо, Оюутны клуб
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-blue-500 rounded-full md:w-3 md:h-3"></span>
+          Олон улсын хамтарсан хөтөлбөр
         </span>
       </div>
 
       {/* Back button for mobile */}
-      {isMobileDayView && window.innerWidth <= 768 && (
+      {isMobileDayView && (
         <button
           onClick={handleBackToMonth}
           className="px-3 py-1 mb-2 text-xs text-white bg-gray-700 rounded-md"
