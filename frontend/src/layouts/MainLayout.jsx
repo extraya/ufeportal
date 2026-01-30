@@ -247,7 +247,7 @@ const MainLayout = ({ children }) => {
               <h3 className="mb-4 text-2xl font-bold">Санал хүсэлт</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <Link to="/req" className="hover:font-extrabold">
+                  <Link to="/bsa/req" className="hover:font-extrabold">
                     Оюутны хүсэлтийн маягтууд
                   </Link>
                 </li>
