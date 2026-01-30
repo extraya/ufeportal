@@ -11,10 +11,10 @@ export default function Cal() {
   const calendarRef = useRef(null);
 
   const TYPE_COLORS = {
-    "БСА-ны ажил" : "#ef4444",
-    "Оюутны хөгжлийн төвийн ажил" : "#22c55e",
-    "Оюутны холбоо, Оюутны клуб" : "#3b82f6",
-    "Олон улсын хамтарсан хөтөлбөр": "#3b82f6"
+    "БСА-ны ажил" : "#0070c0",
+    "Оюутны хөгжлийн төвийн ажил" : "#ed7d31",
+    "Оюутны холбоо, Оюутны клуб" : "#70ad47",
+    "Олон улсын хамтарсан хөтөлбөр": "#7030a0"
   };
 
   useEffect(() => {
@@ -69,19 +69,19 @@ export default function Cal() {
       {/* LEGEND */}
       <div className="flex flex-wrap justify-center gap-3 mb-2 text-xs md:justify-start md:text-sm">
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-red-500 rounded-full md:w-3 md:h-3"></span>
+          <span className="w-2 h-2 bg-blue-600 rounded-full md:w-3 md:h-3"></span>
           БСА-ны ажил
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full md:w-3 md:h-3"></span>
+          <span className="w-2 h-2 bg-orange-500 rounded-full md:w-3 md:h-3"></span>
           Оюутны хөгжлийн төвийн ажил
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-blue-500 rounded-full md:w-3 md:h-3"></span>
+          <span className="w-2 h-2 bg-green-500 rounded-full md:w-3 md:h-3"></span>
           Оюутны холбоо, Оюутны клуб
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-blue-500 rounded-full md:w-3 md:h-3"></span>
+          <span className="w-2 h-2 bg-purple-500 rounded-full md:w-3 md:h-3"></span>
           Олон улсын хамтарсан хөтөлбөр
         </span>
       </div>

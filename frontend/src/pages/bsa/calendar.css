@@ -17,3 +17,7 @@
     height: 6px;
   }
 }
+
+.fc .fc-daygrid-event {
+  white-space: normal; /* Allow event titles to wrap */
+}
