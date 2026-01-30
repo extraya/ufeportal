@@ -92,7 +92,7 @@ export default function Cal() {
           onClick={handleBackToMonth}
           className="px-3 py-1 mb-2 text-xs text-white bg-gray-700 rounded-md"
         >
-          Back to Month
+          Сараар харах
         </button>
       )}
 

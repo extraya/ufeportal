@@ -16,6 +16,8 @@ import NewsAll from './pages/Newsall';
 import Globe from './pages/globe.jsx/global';
 import Vid from './pages/vid';
 import Calendar from './pages/bsa/calendar';
+import Newsbsa from './pages/bsa/newsbsa';
+import BSADetail from './pages/bsa/bsadetail';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <Route path="/globe" element={<Globe />} />
           <Route path="/video" element={<Vid />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/newsbsa" element={<Newsbsa />} />
+          <Route path="/bsa/news/:id" element={<BSADetail />} />
         </Routes>
       </MainLayout>
     </Router>
