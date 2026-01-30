@@ -247,9 +247,9 @@ const MainLayout = ({ children }) => {
               <h3 className="mb-4 text-2xl font-bold">Санал хүсэлт</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <a href="https://ufeforms.pages.dev/" target="_blank" rel="noopener noreferrer" className="hover:font-extrabold">
+                  <Link to="/req" className="hover:font-extrabold">
                     Оюутны хүсэлтийн маягтууд
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="https://ufenu.sharepoint.com/sites/UFE-files/DocLib/pdf%20bolgoson/ajillavar-ufe-2020.pdf?CT=1769401252899&OR=ItemsView" target="_blank" rel="noopener noreferrer" className="hover:font-extrabold">
