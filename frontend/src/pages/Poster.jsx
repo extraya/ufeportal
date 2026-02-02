@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
-
-// Poster files in public/posters/
-const posterFiles = [
-  "poster1.png",
-  "poster2.jpg",
-  "poster3.png",
-];
+import { supabase2 } from "../supabase2"; // adjust your import
 
 export default function PosterSwiper() {
-  const posters = posterFiles.map((file) => `/posters/${file}`);
+  const [posters, setPosters] = useState([]);
   const [current, setCurrent] = useState(0);
   const [fade, setFade] = useState(true);
 
+  // Fetch posters from Supabase
+  useEffect(() => {
+    const fetchPosters = async () => {
+      const { data, error } = await supabase2
+        .from("news")
+        .select("id, image_url") 
+        .eq("type", "Пин постер");
+
+      if (error) {
+        console.error("Error fetching posters:", error);
+        return;
+      }
+
+      // Map to just URLs
+      setPosters(data.map((item) => item.image_url));
+    };
+
+    fetchPosters();
+  }, []);
+
   // Auto-cycle posters
   useEffect(() => {
+    if (!posters.length) return; // don't start interval if empty
+
     const interval = setInterval(() => {
       setFade(false);
       setTimeout(() => {
@@ -23,7 +39,7 @@ export default function PosterSwiper() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [posters.length]);
+  }, [posters]);
 
   // Manual navigation
   const changeSlide = (direction) => {
@@ -37,6 +53,8 @@ export default function PosterSwiper() {
       setFade(true);
     }, 500);
   };
+
+  if (!posters.length) return null; // or a loading spinner
 
   return (
     <div className="relative flex justify-center w-full py-32 bg-white md:py-40">
