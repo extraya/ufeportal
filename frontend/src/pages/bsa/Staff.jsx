@@ -53,6 +53,7 @@ export default function Staff() {
 
   /* ===== POINTER / SWIPE LOGIC ===== */
   const onPointerDown = (e) => {
+    if (e.target.closest("button")) return;
     startX.current = e.clientX;
     startY.current = e.clientY;
     deltaX.current = 0;
