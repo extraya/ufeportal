@@ -18,7 +18,7 @@ import Vid from './pages/vid';
 import Calendar from './pages/bsa/calendar';
 import Newsbsa from './pages/bsa/newsbsa';
 import BSADetail from './pages/bsa/bsadetail';
-import Req from './pages/bsa/req';
+
 
 function App() {
   return (
@@ -44,7 +44,6 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/newsbsa" element={<Newsbsa />} />
           <Route path="/bsa/news/:id" element={<BSADetail />} />
-          <Route path="/bsa/req" element={<Req />} />
         </Routes>
       </MainLayout>
     </Router>
