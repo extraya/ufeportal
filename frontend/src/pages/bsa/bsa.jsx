@@ -27,7 +27,7 @@ export default function Bsa() {
     { title: "Хүсэлт гаргах", path: "req" },
     { title: "Бусад албаны чиг үүрэг", path: "others"},
     { title: "Чухал үйл явдал", path: "calendar"},
-    { title: "Өрөөний хуваарь", path: "rooms"},
+    { title: "Ангийн хуваарь", path: "rooms"},
   ];
 
   return (
