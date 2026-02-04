@@ -17,46 +17,47 @@ const TIME_SLOTS = [
   { start: "19:20", end: "20:10" }
 ];
 
-// --- FLOOR GROUPING ---
-function getFloor(room) {
-  room = room.replace(/С/g, "C");
-  if (room === "БТЗаал") return "Спорт Заал";
-  const match = room.match(/^([A-Z]+)(\d+)/i);
-  if (!match) return "Other";
-  const [_, block] = match;
-  return block;
-}
-
-// --- GET FLOOR NUMBER (for C rooms) ---
+// --- GET FLOOR NUMBER FROM ROOM ---
 function getFloorNumber(room) {
-  const match = room.match(/^C(\d+)/i);
+  const match = room.match(/\d+/);
   if (!match) return null;
-  return Math.floor(parseInt(match[1], 10) / 100); // 707 -> 7, 807 -> 8
+  return Math.floor(parseInt(match[0], 10) / 100);
 }
 
-// --- SORT ROOMS ---
-function sortRooms(rooms) {
-  const specialRooms = ["БТЗаал"];
+// --- SORT ROOMS ASCENDING ---
+function sortRoomsAsc(rooms) {
   return rooms.sort((a, b) => {
-    a = a.replace(/С/g, "C");
-    b = b.replace(/С/g, "C");
-
-    if (specialRooms.includes(a)) return 1;
-    if (specialRooms.includes(b)) return -1;
-
-    const matchA = a.match(/^([A-Z]+)(\d+)$/i);
-    const matchB = b.match(/^([A-Z]+)(\d+)$/i);
-    if (!matchA || !matchB) return a.localeCompare(b);
-
-    const [_, blockA, numA] = matchA;
-    const [__, blockB, numB] = matchB;
-
-    if (blockA !== blockB) return blockA.localeCompare(blockB);
-    return parseInt(numA) - parseInt(numB);
+    const na = parseInt(a.match(/\d+/)?.[0] || 0, 10);
+    const nb = parseInt(b.match(/\d+/)?.[0] || 0, 10);
+    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+    return a.localeCompare(b);
   });
 }
 
-// --- HELPER: overlap ---
+// --- GROUP ROOMS BY FLOOR RANGE ---
+function groupRoomsByFloor(rooms) {
+  const groups = {
+    "1–5": [],
+    "6–9": [],
+    "Бусад": []
+  };
+
+  rooms.forEach(room => {
+    const floor = getFloorNumber(room);
+    if (floor >= 1 && floor <= 5) groups["1–5"].push(room);
+    else if (floor >= 6 && floor <= 9) groups["6–9"].push(room);
+    else groups["Бусад"].push(room);
+  });
+
+  // Sort each group
+  for (const key in groups) {
+    groups[key] = sortRoomsAsc(groups[key]);
+  }
+
+  return groups;
+}
+
+// --- TIME OVERLAP ---
 function overlaps(classStart, classEnd, slotStart, slotEnd) {
   return classStart < slotEnd && classEnd > slotStart;
 }
@@ -64,7 +65,11 @@ function overlaps(classStart, classEnd, slotStart, slotEnd) {
 export default function RoomAvailability() {
   const [day, setDay] = useState("Даваа");
   const [schedule, setSchedule] = useState([]);
-  const [floors, setFloors] = useState({}); // {section: [rooms]}
+  const [roomsByGroup, setRoomsByGroup] = useState({
+    "1–5": [],
+    "6–9": [],
+    "Бусад": []
+  });
 
   useEffect(() => {
     fetchSchedule();
@@ -80,70 +85,52 @@ export default function RoomAvailability() {
 
     setSchedule(data);
 
-    const roomMap = { "1-7": [], "8-13": [], "Бусад": [] };
-
     const uniqueRooms = [...new Set(data.map(r => r.room))];
-    uniqueRooms.forEach(room => {
-      if (room === "БТЗаал") {
-        roomMap["Бусад"].push(room);
-        return;
-      }
-      if (room.startsWith("C")) {
-        const floorNum = getFloorNumber(room);
-        if (floorNum <= 7) roomMap["1-7"].push(room);
-        else roomMap["8-13"].push(room);
-      } else {
-        roomMap["Бусад"].push(room);
-      }
-    });
+    const grouped = groupRoomsByFloor(uniqueRooms);
 
-    // Sort each section
-    for (const sec in roomMap) {
-      roomMap[sec] = sortRooms(roomMap[sec]);
-    }
-
-    setFloors(roomMap);
+    setRoomsByGroup(grouped);
   }
 
   return (
     <div className="p-4 overflow-auto rounded-lg shadow bg-gray-50">
       {/* Day selector + legend */}
-      <div className="flex items-center justify-start mb-4 space-x-6">
+      <div className="flex items-center mb-4 space-x-6">
         <select
           value={day}
-          onChange={(e) => setDay(e.target.value)}
-          className="px-3 py-1 text-sm bg-white border rounded-md hover:border-blue-400"
+          onChange={e => setDay(e.target.value)}
+          className="px-3 py-1 text-sm bg-white border rounded-md"
         >
-          {["Даваа","Мягмар","Лхагва","Пүрэв","Баасан"].map(d => (
+          {["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан"].map(d => (
             <option key={d} value={d}>{d}</option>
           ))}
         </select>
 
-        <div className="flex items-center space-x-4 text-sm">
+        <div className="flex space-x-4 text-sm">
           <div className="flex items-center space-x-1">
-            <div className="w-4 h-4 bg-red-400 border rounded-sm"></div>
+            <div className="w-4 h-4 bg-red-400 rounded-sm"></div>
             <span>Хичээлтэй</span>
           </div>
           <div className="flex items-center space-x-1">
-            <div className="w-4 h-4 bg-green-200 border rounded-sm"></div>
+            <div className="w-4 h-4 bg-green-200 rounded-sm"></div>
             <span>Хичээлгүй</span>
           </div>
         </div>
       </div>
 
-      {/* Timetable grid */}
+      {/* ROOM TABLES */}
       <div className="overflow-auto border rounded-lg">
-        {Object.entries(floors).map(([section, rooms]) => {
-          if (rooms.length === 0) return null;
-          return (
-            <div key={section} className="mb-6">
-              <h2 className="sticky top-0 z-10 px-2 py-1 font-bold bg-gray-200 border-b">
-                {section === "Other" ? "Бусад" : `C байр ${section}`}
+        {Object.entries(roomsByGroup).map(([groupName, rooms]) => (
+          rooms.length > 0 && (
+            <div key={groupName} className="mb-8">
+              <h2 className="sticky top-0 z-20 px-2 py-1 font-bold bg-gray-200 border-b">
+                {groupName} давхар
               </h2>
 
-              {/* Time header + room names */}
-              <div className="sticky z-10 flex bg-gray-100 border-b top-6">
-                <div className="w-20 py-1 font-semibold text-center border-r">Цаг</div>
+              {/* Header */}
+              <div className="sticky z-10 flex bg-gray-100 border-b top-7">
+                <div className="w-20 py-1 text-sm font-semibold text-center border-r">
+                  Цаг
+                </div>
                 {rooms.map(room => (
                   <div
                     key={room}
@@ -157,25 +144,30 @@ export default function RoomAvailability() {
               {/* Grid */}
               {TIME_SLOTS.map((slot, idx) => (
                 <div key={idx} className="flex border-b">
-                  <div className="sticky left-0 w-20 py-1 text-xs font-medium text-center bg-gray-100 border-r z-5">
+                  <div className="sticky left-0 z-10 w-20 py-1 text-xs font-medium text-center bg-gray-100 border-r">
                     {slot.start}-{slot.end}
                   </div>
+
                   {rooms.map(room => {
                     const occupied = schedule.some(s =>
-                      s.room === room && overlaps(s.start_time, s.end_time, slot.start, slot.end)
+                      s.room === room &&
+                      overlaps(s.start_time, s.end_time, slot.start, slot.end)
                     );
+
                     return (
                       <div
                         key={room + idx}
-                        className={`flex-1 h-8 border-r ${occupied ? "bg-red-400" : "bg-green-200"}`}
+                        className={`flex-1 h-8 border-r ${
+                          occupied ? "bg-red-400" : "bg-green-200"
+                        }`}
                       />
                     );
                   })}
                 </div>
               ))}
             </div>
-          );
-        })}
+          )
+        ))}
       </div>
     </div>
   );

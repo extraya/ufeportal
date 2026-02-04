@@ -261,6 +261,11 @@ const MainLayout = ({ children }) => {
                     Календар
                   </Link>
                 </li>
+                <li>
+                  <Link to="/bsa/rooms" className="hover:font-extrabold">
+                    Анги танхимын хуваарь
+                  </Link>
+                </li>
               </ul>
             </div>
             
