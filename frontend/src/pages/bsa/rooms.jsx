@@ -39,14 +39,14 @@ function groupRoomsByFloor(rooms) {
   const groups = {
     "1–5": [],
     "6–9": [],
-    "Бусад": []
+    "10-14": []
   };
 
   rooms.forEach(room => {
     const floor = getFloorNumber(room);
     if (floor >= 1 && floor <= 5) groups["1–5"].push(room);
     else if (floor >= 6 && floor <= 9) groups["6–9"].push(room);
-    else groups["Бусад"].push(room);
+    else groups["10-14"].push(room);
   });
 
   // Sort each group
@@ -68,7 +68,7 @@ export default function RoomAvailability() {
   const [roomsByGroup, setRoomsByGroup] = useState({
     "1–5": [],
     "6–9": [],
-    "Бусад": []
+    "10-14": []
   });
 
   useEffect(() => {
