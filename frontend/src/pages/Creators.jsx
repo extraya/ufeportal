@@ -5,7 +5,7 @@ const creators = [
   {
     name: "Бямбабаяр Атарбаяр",
     role: "Frontend Developer",
-    image: "/images/creator1.jpg",
+    image: "/raya.jpg",
     bio: "Focused on clean interfaces, accessibility, and user experience.",
   },
   {

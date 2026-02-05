@@ -28,6 +28,7 @@ export default function Staff() {
           "Ахлах мэргэжилтэн",
           "Мэргэжилтэн",
           "Зохицуулагч",
+          "GOD",
         ];
 
         setStaff(
