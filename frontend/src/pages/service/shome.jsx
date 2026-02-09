@@ -1,5 +1,4 @@
 import { Routes, Route, NavLink } from "react-router-dom";
-import About from "./About-us";
 import MeritProgram from "./MeritProgram";
 import Jobs from "./Jobs";
 import ConnectCenter from "./ConnectCenter";
@@ -8,12 +7,13 @@ import Clubs from "./Clubs";
 import Achievements from "./Achievements";
 import Handbook from "./Handbook";
 import StudentLife from "./StudentLife";
+import { FaUserGraduate, FaBriefcase, FaHandsHelping, FaBrain } from "react-icons/fa";
+
 
 export default function StudentServices() {
   const BASE = "/services"; // absolute base path
 
   const menuItems = [
-    { title: "Тухай", path: "about" },
     { title: "Тэмдэгтийн хөтөлбөр", path: "merit-program" },
     { title: "Ажлын байр", path: "jobs" },
     { title: "UFE Connect Center", path: "connect-center" },
@@ -51,8 +51,53 @@ export default function StudentServices() {
       {/* Main content */}
       <main className="flex-1">
         <Routes>
-          <Route index element={<div className="text-gray-500">Оюутны хөгжилд чиглэсэн үйлчилгээ </div>} />
-          <Route path="about" element={<About />} />
+          <Route index element={<div className="min-h-[60vh] flex flex-col items-center justify-center px-6">
+            {/* Title */}
+            <h1 className="mb-2 text-2xl font-semibold text-gray-800">
+              Оюутны хөгжилд чиглэсэн үйлчилгээ
+            </h1>
+
+            {/* Subtitle */}
+            <p className="max-w-xl mb-10 text-center text-gray-500">
+              Оюутнуудын ур чадвар, сэтгэл зүй болон мэргэжлийн хөгжлийг дэмжих
+              цогц үйлчилгээ
+            </p>
+
+            {/* Cards */}
+            <div className="grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="flex flex-col items-center p-6 text-center transition bg-white shadow-sm rounded-xl hover:shadow-md">
+                <FaUserGraduate className="mb-3 text-3xl text-blue-500" />
+                <h3 className="font-medium text-gray-800">Ур чадвар</h3>
+                <p className="mt-1 text-sm text-gray-500">
+                  Суралцах, өөрийгөө хөгжүүлэх чадвар
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center p-6 text-center transition bg-white shadow-sm rounded-xl hover:shadow-md">
+                <FaBriefcase className="mb-3 text-3xl text-green-500" />
+                <h3 className="font-medium text-gray-800">Карьер</h3>
+                <p className="mt-1 text-sm text-gray-500">
+                  Ажил мэргэжлийн чиг баримжаа
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center p-6 text-center transition bg-white shadow-sm rounded-xl hover:shadow-md">
+                <FaBrain className="mb-3 text-3xl text-purple-500" />
+                <h3 className="font-medium text-gray-800">Сэтгэл зүй</h3>
+                <p className="mt-1 text-sm text-gray-500">
+                  Сэтгэлзүйн зөвлөгөө, дэмжлэг
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center p-6 text-center transition bg-white shadow-sm rounded-xl hover:shadow-md">
+                <FaHandsHelping className="mb-3 text-3xl text-orange-500" />
+                <h3 className="font-medium text-gray-800">Дэмжлэг</h3>
+                <p className="mt-1 text-sm text-gray-500">
+                  Оюутанд чиглэсэн үйлчилгээ
+                </p>
+              </div>
+            </div>
+          </div>} />
           <Route path="merit-program" element={<MeritProgram />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="connect-center" element={<ConnectCenter />} />
