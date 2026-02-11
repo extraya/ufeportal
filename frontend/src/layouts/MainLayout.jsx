@@ -55,19 +55,19 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-white">
       {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <header className="sticky top-0 z-50 shadow-sm bg-primary">
         <nav className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* LOGO */}
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="/logo-ufe.png"
+                src="/logo-white.png"
                 alt="Logo"
                 className="object-contain w-10 h-10"
               />
-              <span className="text-lg font-bold text-primary sm:text-xl">
+              <span className="text-lg font-bold text-white sm:text-xl">
                 БАКАЛАВРЫН СУРГАЛТЫН АЛБА
               </span>
             </Link>
@@ -81,7 +81,7 @@ const MainLayout = ({ children }) => {
                   <Link
                     key={nav.label}
                     to={nav.link}
-                    className="text-gray-700 hover:text-primary"
+                    className="text-white hover:font-extrabold"
                   >
                     {nav.label}
                   </Link>
@@ -93,7 +93,7 @@ const MainLayout = ({ children }) => {
             <div className="md:hidden">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="text-gray-700 hover:text-primary"
+                className="text-white hover:font-extrabold"
               >
                 <svg
                   className="w-6 h-6"
@@ -138,7 +138,7 @@ const MainLayout = ({ children }) => {
                     <div key={nav.label}>
                       <button
                         onClick={() => toggleDropdown(nav.label)}
-                        className="flex items-center justify-between w-full px-5 py-4 text-base font-medium text-gray-700 hover:bg-gray-50"
+                        className="flex items-center justify-between w-full px-5 py-4 text-base font-medium text-white hover:bg-gray-50"
                       >
                         {nav.label}
                         <span>{openDropdowns[nav.label] ? "−" : "+"}</span>
@@ -150,7 +150,7 @@ const MainLayout = ({ children }) => {
                               key={item.name}
                               to={item.link}
                               onClick={() => setMenuOpen(false)}
-                              className="block px-5 py-2 text-sm text-gray-600 hover:bg-gray-100"
+                              className="block px-5 py-2 text-sm text-white hover:bg-gray-100"
                             >
                               {item.name}
                             </Link>
@@ -163,7 +163,7 @@ const MainLayout = ({ children }) => {
                       key={nav.label}
                       to={nav.link}
                       onClick={() => setMenuOpen(false)}
-                      className="block px-5 py-4 text-base text-gray-700 hover:bg-gray-50"
+                      className="block px-5 py-4 text-base text-white hover:bg-gray-50"
                     >
                       {nav.label}
                     </Link>
@@ -176,7 +176,7 @@ const MainLayout = ({ children }) => {
       </header>
 
       {/* MAIN */}
-      <main className="flex-1 w-full px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <main className="flex-1 w-full px-0 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {children}
       </main>
 

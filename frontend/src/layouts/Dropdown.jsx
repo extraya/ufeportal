@@ -5,7 +5,7 @@ export default function Dropdown({ label, items }) {
   return (
     <div className="relative group">
       {/* Main nav item */}
-      <span className="text-gray-700 cursor-pointer hover:text-primary">
+      <span className="text-white cursor-pointer hover:font-extrabold">
         {label}
       </span>
 
