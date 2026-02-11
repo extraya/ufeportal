@@ -7,7 +7,6 @@ import {
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { supabase2 } from "../supabase2";
 import Dropdown from "./Dropdown";
 
 const MainLayout = ({ children }) => {
@@ -15,22 +14,7 @@ const MainLayout = ({ children }) => {
   const [openDropdowns, setOpenDropdowns] = useState({}); // Track which mobile dropdowns are open
   const [degrees, setDegrees] = useState([]);
 
-  // Fetch degrees for Programs dropdown
-  useEffect(() => {
-    const fetchDegrees = async () => {
-      const { data, error } = await supabase2
-        .from("programs")
-        .select("degree")
-        .not("degree", "is", null);
-
-      if (!error && data) {
-        setDegrees([...new Set(data.map((d) => d.degree))]);
-        //console.log("Degrees from DB:", [...new Set(data.map(d => d.degree))]);
-      }
-    };
-
-    fetchDegrees();
-  }, []);
+  
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -46,8 +30,15 @@ const MainLayout = ({ children }) => {
   const navItems = [
     { label: "Нүүр Хуудас", link: "/" },
     {
-      label: "Хөтөлбөрүүд", 
-      items: degrees.map((deg) => ({ name: deg, link: `/programs/degree/${deg}` })).concat({name: "Globe view", link: "/globe"})
+      label: "Хөтөлбөрүүд",
+      items: [
+        { name: "Үндсэн", link: "/programs/degree/Үндсэн" },
+        { name: "Хамтарсан", link: "/programs/degree/Хамтарсан" },
+        { name: "BTEC", link: "/programs/degree/BTEC" },
+        { name: "Rotation", link: "/programs/degree/Rotation" },
+        { name: "Интерактив", link: "/programs/degree/Интерактив" },
+        { name: "Globe view", link: "/globe" }
+      ]
     },
     { label: "Сургалтын Алба", link: "/bsa"},
     { label: "Эрдэм Шинжилгээ", link: "/research"},
