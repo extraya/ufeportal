@@ -138,7 +138,7 @@ const MainLayout = ({ children }) => {
                     <div key={nav.label}>
                       <button
                         onClick={() => toggleDropdown(nav.label)}
-                        className="flex items-center justify-between w-full px-5 py-4 text-base font-medium text-white hover:bg-gray-50"
+                        className="flex items-center justify-between w-full px-5 py-4 text-base font-medium text-gray-800 hover:bg-gray-50"
                       >
                         {nav.label}
                         <span>{openDropdowns[nav.label] ? "−" : "+"}</span>
@@ -150,7 +150,7 @@ const MainLayout = ({ children }) => {
                               key={item.name}
                               to={item.link}
                               onClick={() => setMenuOpen(false)}
-                              className="block px-5 py-2 text-sm text-white hover:bg-gray-100"
+                              className="block px-5 py-2 text-sm text-gray-800 hover:bg-gray-100"
                             >
                               {item.name}
                             </Link>
@@ -163,7 +163,7 @@ const MainLayout = ({ children }) => {
                       key={nav.label}
                       to={nav.link}
                       onClick={() => setMenuOpen(false)}
-                      className="block px-5 py-4 text-base text-white hover:bg-gray-50"
+                      className="block px-5 py-4 text-base text-gray-800 hover:bg-gray-50"
                     >
                       {nav.label}
                     </Link>
