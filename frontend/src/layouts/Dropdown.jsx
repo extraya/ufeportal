@@ -147,19 +147,6 @@ export default function Dropdown({ label, items }) {
               );
             })}
           </ul>
-
-          {/* Bottom label */}
-          <div
-            className="px-4 py-2.5 flex items-center gap-2"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-          >
-            <span
-              className="text-[10px] uppercase tracking-widest"
-              style={{ color: "rgba(255,255,255,0.2)", fontFamily: "'DM Mono', monospace" }}
-            >
-              UFE · Хөтөлбөрүүд
-            </span>
-          </div>
         </div>
       </div>
 

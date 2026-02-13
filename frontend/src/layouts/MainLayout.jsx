@@ -80,18 +80,14 @@ const MainLayout = ({ children }) => {
                 <img src="/logo-white.png" alt="Logo" className="object-contain w-7 h-7" />
               </div>
               <div className="flex flex-col leading-tight">
-                <span
-                  className="text-sm font-black tracking-widest text-white uppercase"
-                  style={{ fontFamily: "'Oswald', 'Arial Narrow', sans-serif", letterSpacing: "0.15em" }}
-                >
-                  UFE
-                </span>
-                <span
-                  className="hidden sm:block text-[10px] tracking-wider uppercase"
-                  style={{ color: "#e8c96a", fontFamily: "'DM Mono', monospace" }}
-                >
-                  Бакалаврын Сургалтын Алба
-                </span>
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="hidden sm:block text-m tracking-wider uppercase font-bold"
+                    style={{ color: "#e8c96a", fontFamily: "'DM Mono', monospace" }}
+                  >
+                    Бакалаврын Сургалтын Алба
+                  </span>
+                </div>
               </div>
             </Link>
 
@@ -407,11 +403,6 @@ const MainLayout = ({ children }) => {
             <span style={{ fontFamily: "'DM Mono', monospace" }}>
               © 2026 Бакалаврын Сургалтын Алба — UFE
             </span>
-            <div className="flex gap-5">
-              <Link to="/calendar" className="transition-colors hover:text-white/70">Календар</Link>
-              <Link to="/gpa-calculator" className="transition-colors hover:text-white/70">GPA Тооцоолуур</Link>
-              <Link to="/bsa" className="transition-colors hover:text-white/70">BSA</Link>
-            </div>
           </div>
         </div>
       </footer>
