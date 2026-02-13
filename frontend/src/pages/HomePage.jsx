@@ -445,7 +445,7 @@ const HomePage = () => {
         <div>
           <NewsPage />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Announcements />
           <Vid />
         </div>
